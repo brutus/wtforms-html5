@@ -14,23 +14,28 @@ validators are set for the field).
 Examples
 ========
 
->>> # 1st import the needed stuff...
+1st import the needed stuff...
+
 >>> from wtforms import Form
 >>> from wtforms.validators import Length, NumberRange, Required
 >>> from wtforms_html5 import TextField, IntegerField, DateField
 >>> from wtforms_html5 import DateRange
 >>> from datetime import date
->>> # the next one is just to test the forms below, it's nomally not needed
+>>> # and one just for the tests (it is nomally not needed)
 >>> from werkzeug.utils import MultiDict
->>> # now the main part: declare your form
+
+Then comes the main part: declare your form...
+
 >>> class TestForm(Form):
 ...  name = TextField('Name', validators=[Required(), Length(5, 25)])
 ...  number = IntegerField('Number', validators=[NumberRange(1000, 9999)], description='Some stuff...')
 ...  date = DateField('Date:', validators=[DateRange(date(2000,1,1), date(2012,4,20))])
 ...
->>> # lets see how the generated input fields look like...
->>> # the ``min``, ``max`, ``required` and ``title`` attributes where auto-
->>> # generated from the declaration
+
+Now let's see, how the generated input fields look like... the ``min``,
+``max`, ``required` and ``title`` attributes where auto-generated from
+the declaration.
+
 >>> f = TestForm()
 >>> f.name()
 u'<input id="name" max="25" min="5" name="name" required="required" type="text" value="">'
@@ -38,7 +43,9 @@ u'<input id="name" max="25" min="5" name="name" required="required" type="text" 
 u'<input id="number" max="9999" min="1000" name="number" title="Some stuff..." type="number" value="">'
 >>> f.date()
 u'<input id="date" max="2012-04-20" min="2000-01-01" name="date" type="date" value="">'
->>> # and finally test ``DateRange`` and the setting of the ``invalid`` class on error
+
+And finally some quick tests for ``DateRange`` and the setting of the ``invalid`` class on error
+
 >>> d = MultiDict({'name':'Testor', 'date':'1995-05-01'})
 >>> f.process(d)  # enter the data to the form
 >>> f.validate()  # and check for errors...
@@ -107,8 +114,8 @@ Supported auto-attributes
   Is set if the field has the ``required`` flag set.
 
   This happens if you use one of these validators: *DataRequired* or
-  *InputRequired*. You can set just the flag without any validator logic with
-  the *Required* validator from this modul.
+  *InputRequired*. Or *DataNotNone* from this modul. You can set just the flag
+  without any validator logic with the *Required* validator from this modul.
 
 * **min** and **max**
 
@@ -143,9 +150,7 @@ New validators
 Testing and Contribution
 ========================
 
-**WTForms HTML5 Widgets** is at home at:
-
-  https://github.com/brutus/wtforms-html5/
+**WTForms HTML5 Widgets** is at home at: https://github.com/brutus/wtforms-html5/
 
 If you find any bugs, issues or anything, please use the `issue tracker`_.
 
@@ -155,7 +160,7 @@ If you find any bugs, issues or anything, please use the `issue tracker`_.
 .. _`issue tracker`: https://github.com/brutus/wtforms-html5/issues
 .. _WTForms: http://wtforms.simplecodes.com/
 .. _pip: http://www.pip-installer.org/en/latest/index.html
--- _`pip install instructions`: http://www.pip-installer.org/en/latest/installing.html
+.. _`pip install instructions`: http://www.pip-installer.org/en/latest/installing.html
 
 """
 
