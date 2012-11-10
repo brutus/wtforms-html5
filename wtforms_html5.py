@@ -33,7 +33,7 @@ Then comes the main part: declare your form...
 ...
 
 Now let's see, how the generated input fields look like... the ``min``,
-``max`, ``required` and ``title`` attributes where auto-generated from
+``max``, ``required`` and ``title`` attributes where auto-generated from
 the declaration.
 
 >>> f = TestForm()
@@ -52,6 +52,8 @@ And finally some quick tests for ``DateRange`` and the setting of the ``invalid`
 False
 >>> f.errors
 {'date': ['Date must be >= 2000-01-01.'], 'number': [u'Number must be between 1000 and 9999.']}
+>>> f.number()
+u'<input class="invalid" id="number" max="9999" min="1000" name="number" title="Some stuff..." type="number" value="">'
 
 
 Install
@@ -71,7 +73,7 @@ Install from source
 -------------------
 
 You can fetch the latest sourceball_ from github and unpack it, or just clone
-this repository: ``git clone git://github.com/brutus/boozelib.git``. If you
+this repository: ``git clone git://github.com/brutus/wtforms-html5.git``. If you
 got the source, change into the directory and use ``setup.py``:
 
   ``python setup.py install``
@@ -119,7 +121,7 @@ Supported auto-attributes
 
 * **min** and **max**
 
-  If either **Length**, **NumberRange** or **DateRange** is used as a
+  If either *Length*, *NumberRange* or *DateRange* is used as a
   validator and sets a minimal or maximal value, the corresponding INPUT
   attribute is set.
 
@@ -139,8 +141,8 @@ New validators
 
 * **DataNotNone**
 
-  Works like the original **DataRequired** but only raises Errors if the
-  data is ``None``, so that ``Flase`` or ``0`` are accepted values.
+  Works like the original *DataRequired* but only raises an Error if the
+  data is ``None``, so that ``False`` or ``0`` are accepted values.
 
 * **DateRange**
 
