@@ -1,0 +1,4 @@
+include wtforms_html5.py
+include setup.py
+include README.rst LICENSE.txt CHANGES.txt
+include requirements.txt
