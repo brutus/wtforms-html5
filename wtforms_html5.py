@@ -258,7 +258,7 @@ def get_html5_kwargs(field, kwargs):
           kwargs[u'max'] = vali.max
   # check for errors
   if field.errors:
-    cls = kwargs.get('class', kwargs.get('class_', ''))
+    cls = kwargs.get('class', kwargs.pop('class_', ''))
     if cls:
       kwargs[u'class'] = u'invalid {}'.format(cls)
     else:
