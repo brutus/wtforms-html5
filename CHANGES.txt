@@ -1,1 +1,2 @@
+v0.1.1,   2012-11-11 -- Fixed some spelling errors in the documentation.
 v0.1,   2012-11-10 -- Initial release.
