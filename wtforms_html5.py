@@ -179,6 +179,39 @@ from wtforms.validators import Length, NumberRange, StopValidation
 from wtforms.compat import string_types
 
 
+__all__ = (
+  # WIDGETS
+  'Input',
+  'TextInput',
+  'DateInput',
+  'URLInput',
+  'EmailInput',
+  'SearchInput',
+  'TelInput',
+  'NumberInput',
+  'RangeInput',
+  'DecimalInput',
+  'DecimalRangeInput',
+  # FIELDS
+  'TextField',
+  'SearchField',
+  'URLField',
+  'EmailField',
+  'TelField',
+  'IntegerField',
+  'DateField',
+  'DecimalField',
+  'FloatField',
+  'IntegerRangeField',
+  'DecimalRangeField',
+  'FloatRangeField',
+  # VALIDATORS
+  'Required',
+  'DataNotNone',
+  'DateRange'
+)
+
+
 # CUSTOM LOGIC
 
 def get_html5_kwargs(field, kwargs):
