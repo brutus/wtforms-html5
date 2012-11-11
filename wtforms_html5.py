@@ -251,9 +251,11 @@ def get_html5_kwargs(field, kwargs):
       isinstance(vali, DateRange)
     ):
       if not 'min' in kwargs and hasattr(vali, 'min'):
-        kwargs[u'min'] = vali.min
+        if vali.min and vali.min != -1:
+          kwargs[u'min'] = vali.min
       if not 'max' in kwargs and hasattr(vali, 'max'):
-        kwargs[u'max'] = vali.max
+        if vali.max and vali.max != -1:
+          kwargs[u'max'] = vali.max
   # check for errors
   if field.errors:
     cls = kwargs.get('class', kwargs.get('class_', ''))
