@@ -65,7 +65,7 @@ Install with pip
 pip_ is "*a tool for installing and managing Python packages*". If you don't
 have it installed, see the `pip install instructions`_.
 
-  ``pip install boozelib``
+  ``pip install wtforms-html5``
 
 Install from source
 -------------------
