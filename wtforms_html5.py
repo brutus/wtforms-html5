@@ -10,9 +10,16 @@ It supports the new INPUT **types** for fields and also sets some of the
 new INPUT **attributes** automatically (based on widget type and what kind of
 validators are set for the field).
 
+There are **widgets** for all the new INPUT types, that you can use in your
+own fields and also **field** classes ready to use. Along with some
+**validators** that take advantage of the new attributes.
+
 
 Examples
 ========
+
+Use it just like WTForms_. The only difference is, that you import the
+**fields** from ``wtforms_html5`` instead.
 
 1st import the needed stuff...
 
