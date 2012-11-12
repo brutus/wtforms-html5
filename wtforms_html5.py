@@ -14,34 +14,38 @@ There are **widgets** for all the new INPUT types, that you can use in your
 own fields and also **field** classes ready to use. Along with some
 **validators** that take advantage of the new attributes.
 
+Use it just like WTForms_. The only difference is, that you import the
+**fields** from ``wtforms_html5`` instead.
+
 
 Examples
 ========
 
-Use it just like WTForms_. The only difference is, that you import the
-**fields** from ``wtforms_html5`` instead.
-
-1st import the needed stuff...
+First import the needed modules...
 
 >>> from wtforms import Form
->>> from wtforms.validators import Length, NumberRange, Required
+>>> from wtforms.validators import Length, NumberRange, DataRequired
 >>> from wtforms_html5 import TextField, IntegerField, DateField
 >>> from wtforms_html5 import DateRange
+
+And some extra stuff for our examples  (nomally not needed)
+
 >>> from datetime import date
->>> # and one just for the tests (it is nomally not needed)
 >>> from werkzeug.utils import MultiDict
 
-Then comes the main part: declare your form...
+Then comes the main part: declare your form. This works just like vanilla
+WTForms, just use the **fields** you imported from ``wtforms_html5``
+instead...
 
 >>> class TestForm(Form):
-...  name = TextField('Name', validators=[Required(), Length(5, 25)])
+...  name = TextField('Name', validators=[DataRequired(), Length(5, 25)])
 ...  number = IntegerField('Number', validators=[NumberRange(1000, 9999)], description='Some stuff...')
 ...  date = DateField('Date:', validators=[DateRange(date(2000,1,1), date(2012,4,20))])
 ...
 
 Now let's see, how the generated input fields look like... the ``min``,
-``max``, ``required`` and ``title`` attributes where auto-generated from
-the declaration.
+``max``, ``required`` and ``title`` attributes where auto-generated from the
+declaration.
 
 >>> f = TestForm()
 >>> f.name()
@@ -51,7 +55,8 @@ u'<input id="number" max="9999" min="1000" name="number" title="Some stuff..." t
 >>> f.date()
 u'<input id="date" max="2012-04-20" min="2000-01-01" name="date" type="date" value="">'
 
-And finally some quick tests for ``DateRange`` and the setting of the ``invalid`` class on error
+And finally some quick tests for ``DateRange`` and the setting of the
+``invalid`` class on error...
 
 >>> d = MultiDict({'name':'Testor', 'date':'1995-05-01'})
 >>> f.process(d)  # enter the data to the form
