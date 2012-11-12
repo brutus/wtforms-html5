@@ -168,6 +168,21 @@ Testing and Contribution
 
 If you find any bugs, issues or anything, please use the `issue tracker`_.
 
+Testing
+-------
+
+There are some **doctest** in the module. You can either run them from the
+*source directory* like this ``python wtforms_html5.py -v`` or, if you got
+this modul already installed, like this ``python -m doctest -v
+wtforms_html5``.
+
+If you want to run the **test cases**, see that you got nose_ installed. You
+can install it like this: ``pip install nose``. Now either run ``nosetests``
+from the *source directory* or, if you got this modul already installed, run
+them like this: ``nosetest test_wtforms_html5``.
+
+If something fails, please get in touch.
+
 
 .. _home: https://github.com/brutus/wtforms-html5/
 .. _sourceball: https://github.com/brutus/wtforms-html5/zipball/master
@@ -175,6 +190,7 @@ If you find any bugs, issues or anything, please use the `issue tracker`_.
 .. _WTForms: http://wtforms.simplecodes.com/
 .. _pip: http://www.pip-installer.org/en/latest/index.html
 .. _`pip install instructions`: http://www.pip-installer.org/en/latest/installing.html
+.. _nose: http://readthedocs.org/docs/nose/en/latest/testing.html
 
 """
 

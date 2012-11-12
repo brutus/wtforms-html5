@@ -22,5 +22,5 @@ setup(
     'Natural Language :: English',
     'Topic :: Internet :: WWW/HTTP'
   ],
-  py_modules=['wtforms_html5'],
+  py_modules=['wtforms_html5', 'test_wtforms_html5'],
 )
