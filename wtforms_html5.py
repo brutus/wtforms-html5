@@ -455,7 +455,6 @@ class DataNotNone(object):
     ):
       if self.message is None:
         self.message = field.gettext('This field is required.')
-
       field.errors[:] = []
       raise StopValidation(self.message)
 
@@ -476,10 +475,8 @@ class DateRange(object):
       self.err_min, self.err_max = message
     except TypeError:
       self.err_min = self.err_max = message
-    if min:
-      self.min = min
-    if max:
-      self.max = max
+    self.min = min
+    self.max = max
 
   def __call__(self, form, field):
     if self.min and field.data < self.min:
