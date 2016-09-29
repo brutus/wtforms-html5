@@ -1,4 +1,5 @@
-# -*- coding: UTF-8 -*-
+from __future__ import absolute_import
+from __future__ import unicode_literals
 
 """
 WTForms HTML5 Widgets
@@ -49,11 +50,11 @@ declaration.
 
 >>> f = TestForm()
 >>> f.name()
-u'<input id="name" max="25" min="5" name="name" required="required" type="text" value="">'
+'<input id="name" max="25" min="5" name="name" required="required" type="text" value="">'
 >>> f.number()
-u'<input id="number" max="9999" min="1000" name="number" title="Some stuff..." type="number" value="">'
+'<input id="number" max="9999" min="1000" name="number" title="Some stuff..." type="number" value="">'
 >>> f.date()
-u'<input id="date" max="2012-04-20" min="2000-01-01" name="date" type="date" value="">'
+'<input id="date" max="2012-04-20" min="2000-01-01" name="date" type="date" value="">'
 
 And finally some quick tests for ``DateRange`` and the setting of the
 ``invalid`` class on error...
@@ -63,9 +64,9 @@ And finally some quick tests for ``DateRange`` and the setting of the
 >>> f.validate()  # and check for errors...
 False
 >>> f.errors
-{'date': ['Date must be >= 2000-01-01.'], 'number': [u'Number must be between 1000 and 9999.']}
+{'date': ['Date must be >= 2000-01-01.'], 'number': ['Number must be between 1000 and 9999.']}
 >>> f.number()
-u'<input class="invalid" id="number" max="9999" min="1000" name="number" title="Some stuff..." type="number" value="">'
+'<input class="invalid" id="number" max="9999" min="1000" name="number" title="Some stuff..." type="number" value="">'
 
 
 Install
@@ -260,10 +261,10 @@ def get_html5_kwargs(field, kwargs):
   """
   # got description?
   if not 'title' in kwargs and getattr(field, 'description'):
-    kwargs['title'] = u'{}'.format(field.description)
+    kwargs['title'] = '{}'.format(field.description)
   # is field required?
   if not 'required' in kwargs and field.flags.required:
-    kwargs['required'] = u'required'
+    kwargs['required'] = 'required'
   # check validators Length, NumberRange or DateRange
   for vali in field.validators:
     if (
@@ -273,17 +274,17 @@ def get_html5_kwargs(field, kwargs):
     ):
       if not 'min' in kwargs and hasattr(vali, 'min'):
         if vali.min and vali.min != -1:
-          kwargs[u'min'] = vali.min
+          kwargs['min'] = vali.min
       if not 'max' in kwargs and hasattr(vali, 'max'):
         if vali.max and vali.max != -1:
-          kwargs[u'max'] = vali.max
+          kwargs['max'] = vali.max
   # check for errors
   if field.errors:
     cls = kwargs.get('class', kwargs.pop('class_', ''))
     if cls:
-      kwargs[u'class'] = u'invalid {}'.format(cls)
+      kwargs['class'] = 'invalid {}'.format(cls)
     else:
-      kwargs[u'class'] = u'invalid'
+      kwargs['class'] = 'invalid'
   return kwargs
 
 
@@ -347,8 +348,8 @@ class DecimalInput(NumberInput):
   """
 
   def __call__(self, field, **kwargs):
-    if not u'step' in kwargs:
-      kwargs[u'step'] = u'any'
+    if not 'step' in kwargs:
+      kwargs['step'] = 'any'
     return NumberInput.__call__(self, field, **kwargs)
 
 
