@@ -1,1 +1,1 @@
-wtforms
+requirements/base.txt
