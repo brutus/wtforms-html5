@@ -1,69 +1,90 @@
-=====================
-WTForms HTML5 Widgets
-=====================
+=============
+WTForms HTML5
+=============
 
-This modul adds HTML5 widgets to WTForms_.
+**Original Function**: This module used to add HTML5 support to WTForms_.
 
-It supports the new INPUT **types** for fields and also sets some of the
-new INPUT **attributes** automatically (based on widget type and what kind of
+It supported the new INPUT **types** for fields and also sets some of the new
+INPUT **attributes** automatically (based on widget type and what kind of
 validators are set for the field).
 
-There are **widgets** for all the new INPUT types, that you can use in your
-own fields and also **field** classes ready to use. Along with some
-**validators** that take advantage of the new attributes.
+**Changes**: WTForms_ version 1.0.4 started to implement some of these
+features and the current development version (that should become version 3)
+has enough support for all features, so that to prevent the duplication of
+functionality, current versions of *WTForms HTML5* dropped all the fields,
+widgets and validators — just use vanilla WTForms_.
 
-Use it just like WTForms_. The only difference is, that you import the
-**fields** from ``wtforms_html5`` instead.
+**Current Function**: recent versions (starting with 0.2) contain only a
+function that adds the automatically generated keys to the *render_kw* of a
+field. Also a slim subclass of the new `DefaultMeta` class for forms. If you
+use this class as your forms meta, you get the automatic attributes just like
+in the original version of *WTForms HTML5*.
 
 
-Examples
-========
+Supported Auto–Attributes
+=========================
 
-First import the needed modules...
+- **required**
 
->>> from wtforms import Form
->>> from wtforms.validators import Length, NumberRange, DataRequired
->>> from wtforms_html5 import TextField, IntegerField, DateField
->>> from wtforms_html5 import DateRange
+  Is set if the field has the ``required`` flag set.
 
-And some extra stuff for our examples  (nomally not needed)
+  This happens if you use the *DataRequired* or *InputRequired* validator.
 
->>> from datetime import date
->>> from werkzeug.utils import MultiDict
+- **invalid**
 
-Then comes the main part: declare your form. This works just like vanilla
-WTForms, just use the **fields** you imported from ``wtforms_html5``
-instead...
+  If the field got any validation errors, the CSS class *invalid* gets set.
 
->>> class TestForm(Form):
-...  name = TextField('Name', validators=[DataRequired(), Length(5, 25)])
-...  number = IntegerField('Number', validators=[NumberRange(1000, 9999)], description='Some stuff...')
-...  date = DateField('Date:', validators=[DateRange(date(2000,1,1), date(2012,4,20))])
-...
+- **min** and **max**
 
-Now let's see, how the generated input fields look like... the ``min``,
-``max``, ``required`` and ``title`` attributes where auto-generated from the
-declaration.
+  If either *Length* or *NumberRange* or *DateRange* is used as a validator
+  and sets a minimal or maximal value, the corresponding INPUT attribute is
+  set.
 
->>> f = TestForm()
->>> f.name()
-u'<input id="name" max="25" min="5" name="name" required="required" type="text" value="">'
->>> f.number()
-u'<input id="number" max="9999" min="1000" name="number" title="Some stuff..." type="number" value="">'
->>> f.date()
-u'<input id="date" max="2012-04-20" min="2000-01-01" name="date" type="date" value="">'
+- **title**
 
-And finally some quick tests for ``DateRange`` and the setting of the
-``invalid`` class on error...
+  If no *title* attribute is provided for a field, but a *description*, the
+  *description* is used for the *title*.
 
->>> d = MultiDict({'name':'Testor', 'date':'1995-05-01'})
->>> f.process(d)  # enter the data to the form
->>> f.validate()  # and check for errors...
+
+
+Example
+=======
+
+Declare your form just like vanilla WTForms but include :cls:`AutoAttrMeta`
+as your meta class::
+
+>>> from wtforms import Form, StringField
+>>> from wtforms.validators import InputRequired, Length
+>>> from wtforms_html5 import AutoAttrMeta
+>>> class MyForm(Form):
+...   class Meta(AutoAttrMeta):
+...     pass
+...   test_field = StringField(
+...     'Testfield',
+...      validators=[InputRequired(), Length(min=3, max=12)],
+...      description='Just a test field.',
+...   )
+>>> form = MyForm()
+
+The only difference is, that you include a `Meta` class that inherits from
+:cls:`AutoAttrMeta`. Now you get some attributes created automatically for your fields:
+
+>>> form.test_field()
+'<input id="test_field" max="12" min="3" name="test_field" required title="Just a test field." type="text" value="">'
+
+As you can see, the *min* and *max* attributes are created because you used
+the `Length` validator. The field also gets a *title* taken from the fields
+`description`. And the field is marked *required* because of the
+`InputRequired` validator.
+
+If you validate the form and any errors pop up, the field would also get an
+*invalid* attribute::
+
+>>> form.validate()
 False
->>> f.errors
-{'date': ['Date must be >= 2000-01-01.'], 'number': [u'Number must be between 1000 and 9999.']}
->>> f.number()
-u'<input class="invalid" id="number" max="9999" min="1000" name="number" title="Some stuff..." type="number" value="">'
+>>> form.test_field()
+'<input class="invalid" id="test_field" max="12" min="3" name="test_field" required title="Just a test field." type="text" value="">'
+
 
 
 Install
@@ -74,7 +95,7 @@ You can install **WTForms HTML5 Widgets** with pip_ or from source.
 Install with pip
 ----------------
 
-pip_ is "*a tool for installing and managing Python packages*". If you don't
+pip_ is *"a tool for installing and managing Python packages"*. If you don't
 have it installed, see the `pip install instructions`_.
 
   ``pip install wtforms-html5``
@@ -83,80 +104,18 @@ Install from source
 -------------------
 
 You can fetch the latest sourceball_ from github and unpack it, or just clone
-this repository: ``git clone git://github.com/brutus/wtforms-html5.git``. If you
-got the source, change into the directory and use ``setup.py``:
+this repository: ``git clone git://github.com/brutus/wtforms-html5.git``.
+If you got the source, change into the directory and use ``setup.py``:
 
   ``python setup.py install``
 
-Since **WTForms HTML5 Widgets** only adds functionallity to WTForms_, you need
-to have WTForms_ installed too. But if you use the installation methods
-described above, it should have been taken care of.
+Requirements
+------------
 
+Since **WTForms HTML5** only adds functionality to WTForms_, you need to have
+WTForms_ installed too. But if you use the installation methods described
+above, it should have been taken care of.
 
-Details
-=======
-
-Supported INPUT types
----------------------
-
-* TextField
-* SearchField
-* URLField
-* EmailField
-* TelField
-* IntegerField
-* IntegerRangeField
-* DecimalField
-* DecimalRangeField
-* FloatField
-* FloatRangeField
-* DateField
-
-
-Supported auto-attributes
--------------------------
-
-* **title**
-
-  If no *title* attribute is provided for a field, but a *description*,
-  the description is used for the *title*.
-
-* **required**
-
-  Is set if the field has the ``required`` flag set.
-
-  This happens if you use one of these validators: *DataRequired* or
-  *InputRequired*. Or *DataNotNone* from this modul. You can set just the flag
-  without any validator logic with the *Required* validator from this modul.
-
-* **min** and **max**
-
-  If either *Length*, *NumberRange* or *DateRange* is used as a
-  validator and sets a minimal or maximal value, the corresponding INPUT
-  attribute is set.
-
-* **invalid**
-
-  If the field got any validation errors, the css class *invalid* gets set.
-
-
-New validators
---------------
-
-* **Required**
-
-  The *Required* validator from wtforms is an old alias for *DataRequired*.
-  It is deprecated and will be removed in 1.2. The *Required* validator from
-  this modul just sets the ``required`` flag, without any validator logic.
-
-* **DataNotNone**
-
-  Works like the original *DataRequired* but only raises an Error if the
-  data is ``None``, so that ``False`` or ``0`` are accepted values.
-
-* **DateRange**
-
-  Allows the use of *min* and *max* limits for date fields.
 
 
 Testing and Contribution
@@ -169,17 +128,20 @@ If you find any bugs, issues or anything, please use the `issue tracker`_.
 Testing
 -------
 
-There are some **doctest** in the module. You can either run them from the
-*source directory* like this ``python wtforms_html5.py -v`` or, if you got
-this modul already installed, like this ``python -m doctest -v
-wtforms_html5``.
-
-If you want to run the **test cases**, see that you got nose_ installed. You
-can install it like this: ``pip install nose``. Now either run ``nosetests``
-from the *source directory* or, if you got this modul already installed, run
-them like this: ``nosetest test_wtforms_html5``.
+There are some **doctest** in the module. You can run them from the *source
+directory* like this: ``python -m doctest wtforms_html5.py``. If you want to
+run the **test cases**, run ``python -m unittest``, also  from the *source
+directory*.
 
 If something fails, please get in touch.
+
+Additional Requirements
+-----------------------
+
+To run the test cases a few additional requirements need to be fulfilled: see
+the `requirements/testing.txt` file for a list. You can install all testing
+requirements like this: ``pip install -r requirements/testing.txt``.
+
 
 
 .. _home: https://github.com/brutus/wtforms-html5/
@@ -188,4 +150,3 @@ If something fails, please get in touch.
 .. _WTForms: http://wtforms.simplecodes.com/
 .. _pip: http://www.pip-installer.org/en/latest/index.html
 .. _`pip install instructions`: http://www.pip-installer.org/en/latest/installing.html
-.. _nose: http://readthedocs.org/docs/nose/en/latest/testing.html
