@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-# -*- coding: UTF-8 -*-
 
 from distutils.core import setup
+
 
 setup(
   name='wtforms-html5',
@@ -22,6 +22,6 @@ setup(
     'Natural Language :: English',
     'Topic :: Internet :: WWW/HTTP'
   ],
-  py_modules=['wtforms_html5', 'test_wtforms_html5'],
+  py_modules=['wtforms_html5'],
   requires=['wtforms']
 )
