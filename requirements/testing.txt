@@ -1,2 +1,3 @@
 werkzeug
 beautifulsoup4
+tox
