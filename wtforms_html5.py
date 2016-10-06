@@ -1,10 +1,36 @@
 """
-WTForms HTML5 adds some render keywords to a fields widget based on the
-fields settings.
+Generates render keywords for widgets of WTForms HTML5 fields.
 
-The :func:`get_html5_kwargs` returns those automatically generated rendering
-keywords for a field. The :cls:`AutoAttrMeta` can be included in your forms to
-handle this automatically for each field of the form.
+The :func:`get_html5_kwargs` generates rendering keywords for a field.
+
+The :cls:`AutoAttrMeta` can be included as a base class for the `Meta` class
+in your forms to handle this automatically for each field of the form.
+
+
+Supported Auto–Attributes
+=========================
+
+- **required**
+
+  Is set if the field has the ``required`` flag set.
+
+  This happens if you use the *DataRequired* or *InputRequired* validator.
+
+- **invalid**
+
+  If the field got any validation errors, the CSS class *invalid* gets set.
+
+- **min** and **max**
+
+  If either *Length* or *NumberRange* or *DateRange* is used as a validator
+  and sets a minimal or maximal value, the corresponding INPUT attribute is
+  set.
+
+- **title**
+
+  If no *title* attribute is provided for a field, but a *description*, the
+  *description* is used for the *title*.
+
 
 Example
 =======
@@ -26,10 +52,12 @@ as your meta class::
 >>> form = MyForm()
 
 The only difference is, that you include a `Meta` class that inherits from
-:cls:`AutoAttrMeta`. Now you get some attributes created automatically for your fields:
+:cls:`AutoAttrMeta`. Now you get some attributes created automatically for
+your fields:
 
 >>> form.test_field()
-'<input id="test_field" max="12" min="3" name="test_field" required title="Just a test field." type="text" value="">'
+'<input id="test_field" max="12" min="3" name="test_field" required \
+title="Just a test field." type="text" value="">'
 
 As you can see, the *min* and *max* attributes are created because you used
 the `Length` validator. The field also gets a *title* taken from the fields
@@ -42,7 +70,8 @@ If you validate the form and any errors pop up, the field would also get an
 >>> form.validate()
 False
 >>> form.test_field()
-'<input class="invalid" id="test_field" max="12" min="3" name="test_field" required title="Just a test field." type="text" value="">'
+'<input class="invalid" id="test_field" max="12" min="3" name="test_field" \
+required title="Just a test field." type="text" value="">'
 
 """
 
@@ -74,7 +103,8 @@ def get_html5_kwargs(field, render_kw=None):
     Returns a copy of *render_kw*  with keys added for a bound *field*.
 
     If some *render_kw* are given, the new keys are added to a copy of them,
-    which is then returned. If none are given, a dictionary containing only the automatically generated keys is returned.
+    which is then returned. If none are given, a dictionary containing only
+    the automatically generated keys is returned.
 
     .. important::
 
@@ -144,12 +174,11 @@ def get_html5_kwargs(field, render_kw=None):
 
 
 class AutoAttrMeta(DefaultMeta):
-
     """
-    Meta class WTForms :cls:`Form` classes.
+    Meta class for WTForms :cls:`Form` classes.
 
     It uses :func:`get_html5_kwargs` to automatically add some render
-    keywords for each field widget when it gets rendered.
+    keywords for each field's widget when it gets rendered.
 
     """
 
