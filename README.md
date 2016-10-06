@@ -1,6 +1,6 @@
 # WTForms HTML5
 
-Generates render keywords for widgets of WTForms HTML5 fields.
+Generates render keywords for widgets of [WTForms][] HTML5 fields.
 
 __Original Function__: This module used to add HTML5 support to [WTForms][].
 
@@ -11,7 +11,7 @@ validators are set for the field).
 __Changes__: [WTForms][] version 1.0.4 started to implement some of these
 features and the current development version (that should become version 3)
 has enough support for all features, so that to prevent the duplication of
-functionality, current versions of _WTForms HTML5_ dropped all the fields,
+functionality, current versions of __WTForms HTML5__ dropped all the fields,
 widgets and validators — just use vanilla [WTForms][].
 
 __Current Function__: recent versions (starting with 0.2) contain only a
@@ -19,7 +19,7 @@ function: `get_html5_kwargs` — it adds the automatically generated keys to
 the _render_kw_ of a WTForms field. A slim subclass of the new default _Meta_
 class for forms is also provided: `AutoAttrMeta`. If you use this class as your
 forms _Meta_, you get the automatic attributes just like in the original
-version of _WTForms HTML5_.
+version of __WTForms HTML5__.
 
 
 ## Supported Auto–Attributes
@@ -48,7 +48,7 @@ version of _WTForms HTML5_.
 
 ## Example
 
-Declare your form just like vanilla WTForms but include `AutoAttrMeta`
+Declare your form just like vanilla [WTForms][] but include `AutoAttrMeta`
 as your meta class:
 
 ```py
@@ -93,7 +93,7 @@ False
 
 ## Install
 
-You can install __WTForms HTML5 Widgets__ with [pip][] or from source.
+You can install __WTForms HTML5__ with [pip][] or from source.
 
 ### Install with pip
 
