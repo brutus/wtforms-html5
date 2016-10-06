@@ -21,6 +21,7 @@ use this class as your forms meta, you get the automatic attributes just like
 in the original version of *WTForms HTML5*.
 
 
+
 Supported Auto–Attributes
 =========================
 
