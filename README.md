@@ -2,24 +2,24 @@
 
 Generates render keywords for widgets of [WTForms][] HTML5 fields.
 
-__Original Function__: This module used to add HTML5 support to [WTForms][].
+_Original Function_: This module used to add HTML5 support to _WTForms_.
 
 It supported the new INPUT __types__ for fields and also sets some of the new
 INPUT __attributes__ automatically (based on widget type and what kind of
 validators are set for the field).
 
-__Changes__: [WTForms][] version 1.0.4 started to implement some of these
-features and the current development version (that should become version 3)
+_Changes_: _WTForms_ version 1.0.4 started to implement some of these features
+and the current (late 2016) development version — that should become version 3 —
 has enough support for all features, so that to prevent the duplication of
 functionality, current versions of __WTForms HTML5__ dropped all the fields,
-widgets and validators — just use vanilla [WTForms][].
+widgets and validators — just use vanilla _WTForms_.
 
-__Current Function__: recent versions (starting with 0.2) contain only a
-function: `get_html5_kwargs` — it adds the automatically generated keys to
-the _render_kw_ of a WTForms field. A slim subclass of the new default _Meta_
-class for forms is also provided: `AutoAttrMeta`. If you use this class as your
-forms _Meta_, you get the automatic attributes just like in the original
-version of __WTForms HTML5__.
+_Current Function_: recent versions (starting with 0.2) contain only one
+function: `get_html5_kwargs` — it adds the automatically generated keys to the
+_render keywords_ of a _WTForms_ field. A slim subclass of the new default
+_Meta_ class for forms is also provided: `AutoAttrMeta`. If you use this class
+as your forms _Meta_, you get the automatic attributes for all fields in your
+form, just like in the original version of __WTForms HTML5__.
 
 
 ## Supported Auto–Attributes
@@ -32,13 +32,12 @@ version of __WTForms HTML5__.
 
 - __invalid__
 
-  If the field got any validation errors, the CSS class _invalid_ gets set.
+  If the field got any validation errors, the CSS class _invalid_ is added.
 
 - __min__ and __max__
 
-  If either _Length_ or _NumberRange_ or _DateRange_ is used as a validator
-  and sets a minimal or maximal value, the corresponding INPUT attribute is
-  set.
+  If either _Length_ or _NumberRange_ is used as a validator and sets a minimal
+  or maximal value, the corresponding INPUT attribute is set.
 
 - __title__
 
@@ -48,13 +47,13 @@ version of __WTForms HTML5__.
 
 ## Example
 
-Declare your form just like vanilla [WTForms][] but include `AutoAttrMeta`
+Declare your form just like in vanilla _WTForms_, but include `AutoAttrMeta`
 as your meta class:
 
 ```py
 >>> from wtforms import Form, StringField
 >>> from wtforms.validators import InputRequired, Length
->>> from [wtformshtml5] import AutoAttrMeta
+>>> from wtforms_html5 import AutoAttrMeta
 >>> class MyForm(Form):
 ...   class Meta(AutoAttrMeta):
 ...     pass
@@ -66,7 +65,7 @@ as your meta class:
 >>> form = MyForm()
 ```
 
-The only difference is, that you include a `Meta` class that inherits from
+The only difference is, that you include a `Meta` class, that inherits from
 `AutoAttrMeta`. Now you get some attributes created automatically for your
 fields:
 
@@ -75,10 +74,8 @@ fields:
 '<input id="test_field" max="12" min="3" name="test_field" required title="Just a test field." type="text" value="">'
 ```
 
-As you can see, the _min_ and _max_ attributes are created because you used
-the `Length` validator. The field also gets a _title_ taken from the fields
-`description`. And the field is marked _required_ because of the
-`InputRequired` validator.
+The _min_ and _max_ attributes are created because you used the `Length`
+validator. And the field is marked _required_ because of the `InputRequired` validator. The field also gets a _title_ taken from the fields `description`.
 
 If you validate the form and any errors pop up, the field would also get an
 _invalid_ attribute:
@@ -104,16 +101,16 @@ have it installed, see the [pip install instructions][].
 
 ### Install from source
 
-You can fetch the latest [sourceball][] from github and unpack it, or just clone
-this repository: `git clone git://github.com/brutus/wtforms-html5.git`.
-If you got the source, change into the directory and use `setup.py`:
+You can fetch the latest [sourceball][] from github and unpack it, or just
+clone this repository: `git clone git://github.com/brutus/wtforms-html5.git`.
+If you got the source, change into the directory and use _setup.py_:
 
 `python setup.py install`
 
 ### Install Requirements
 
-Since __WTForms HTML5__ only adds functionality to [WTForms][], you need to have
-[WTForms][] installed too. But if you use the installation methods described
+Since __WTForms HTML5__ only adds functionality to [WTForms][], you need to
+have it installed too. But if you use the installation methods described
 above, it should have been taken care of.
 
 
@@ -127,8 +124,8 @@ If you find any bugs, issues or anything, please use the [issue tracker][].
 
 There are some __doctest__ in the module. You can run them from the _source
 directory_ like this: `python -m doctest wtformshtml5.py`. If you want to
-run the __test cases__, run `python -m unittest`, also  from the _source
-directory_.
+run the __test cases__, run `python -m unittest discover`  (also from the
+_source directory_).
 
 If something fails, please get in touch.
 
