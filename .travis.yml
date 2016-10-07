@@ -7,7 +7,10 @@ before_script:
   - make stylechecks
 script:
   - if [[ $TRAVIS_PYTHON_VERSION != '2.7' ]]; then make doctests; fi
-  - make unittests
+  - make cover
 branches:
   only:
     - master
+after_success:
+  - pip install coveralls
+  - coveralls
