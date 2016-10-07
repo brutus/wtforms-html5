@@ -1,6 +1,6 @@
 # WTForms HTML5
 
-![Build Status][badge-travis] ![Code Status][badge-landscape]
+![Build Status][badge-travis] ![Code Status][badge-landscape] ![Coverage Status][badge-coveralls]
 
 Generates render keywords for widgets of [WTForms][] HTML5 fields.
 
@@ -151,3 +151,4 @@ requirements/testing.txt``.
 
 [badge-travis]: https://api.travis-ci.org/brutus/wtforms-html5.svg?branch=master
 [badge-landscape]: https://landscape.io/github/brutus/wtforms-html5/master/landscape.svg?style=flat
+[badge-coveralls]: https://coveralls.io/repos/github/brutus/wtforms-html5/badge.svg?branch=master
