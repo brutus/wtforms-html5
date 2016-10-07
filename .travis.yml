@@ -6,7 +6,7 @@ python:
 before_script:
   - make stylechecks
 script:
-  - if [[ $TRAVIS_PYTHON_VERSION != '2.7' ]] make doctests
+  - if [[ $TRAVIS_PYTHON_VERSION != '2.7' ]]; then make doctests; fi
   - make unittests
 branches:
   only:
