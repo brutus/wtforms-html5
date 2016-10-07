@@ -1,5 +1,7 @@
 # WTForms HTML5
 
+![Travis Status][img-travis]
+
 Generates render keywords for widgets of [WTForms][] HTML5 fields.
 
 _Original Function_: This module used to add HTML5 support to _WTForms_.
@@ -142,6 +144,9 @@ requirements/testing.txt``.
 [home]: https://github.com/brutus/wtforms-html5/
 [sourceball]: https://github.com/brutus/wtforms-html5/zipball/master
 [issue tracker]: https://github.com/brutus/wtforms-html5/issues
+
 [WTForms]: http://wtforms.simplecodes.com/
 [pip]: http://www.pip-installer.org/en/latest/index.html
 [pip install instructions]: http://www.pip-installer.org/en/latest/installing.html
+
+[img-travis]: https://api.travis-ci.org/brutus/wtforms-html5.svg?branch=master
