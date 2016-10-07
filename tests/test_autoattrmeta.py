@@ -59,3 +59,12 @@ class TestMeta(TestCase):
         form = get_form(description='Some help text', use_meta=True)
         field = get_field(form)
         self.assertEqual(field.attrs['title'], 'Some help text')
+
+    def test_field_renderkw(self):
+        render_kw = {
+            'class': 'imspecial too',
+        }
+        form = get_form(render_kw=render_kw, use_meta=True)
+        field = get_field(form)
+        self.assertIn('imspecial', field.attrs['class'])
+        self.assertIn('too', field.attrs['class'])
