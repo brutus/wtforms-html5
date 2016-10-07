@@ -1,1 +1,3 @@
-requirements/base.txt
+-r requirements/base.txt
+-r requirements/testing.txt
+-r requirements/development.txt
