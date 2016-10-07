@@ -2,26 +2,28 @@
 
 ![Build Status][badge-travis] ![Code Status][badge-landscape] ![Coverage Status][badge-coveralls]
 
-Generates render keywords for widgets of [WTForms][] HTML5 fields.
+Generates render keywords for [WTForms][] HTML5 field's widgets.
 
 _Original Function_: This module used to add HTML5 support to _WTForms_.
 
-It supported the new INPUT __types__ for fields and also sets some of the new
-INPUT __attributes__ automatically (based on widget type and what kind of
-validators are set for the field).
+It supported the new INPUT __types__ for fields and had also set some of the new
+INPUT __attributes__ automatically for the generated HTML Input elements (based
+on widget type and what kind of validator was set for the field).
 
 _Changes_: _WTForms_ version 1.0.4 started to implement some of these features
 and the current (late 2016) development version — that should become version 3 —
-has enough support for all features, so that to prevent the duplication of
+has enough support for all that features, that to prevent the duplication of
 functionality, current versions of __WTForms HTML5__ dropped all the fields,
 widgets and validators — just use vanilla _WTForms_.
 
 _Current Function_: recent versions (starting with 0.2) contain only one
 function: `get_html5_kwargs` — it adds the automatically generated keys to the
-_render keywords_ of a _WTForms_ field. A slim subclass of the new default
-_Meta_ class for forms is also provided: `AutoAttrMeta`. If you use this class
-as your forms _Meta_, you get the automatic attributes for all fields in your
-form, just like in the original version of __WTForms HTML5__.
+_render keywords_ of a _WTForms_ field.
+
+A slim subclass of the new default _Meta_ class for forms is also provided:
+`AutoAttrMeta`. If you use this class as your forms _Meta_, you get the
+automatic attributes for all fields in your form, just like in the original
+version of __WTForms HTML5__.
 
 
 ## Supported Auto–Attributes
