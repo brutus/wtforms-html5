@@ -112,7 +112,8 @@ If you got the source, change into the directory and use _setup.py_:
 
 Since __WTForms HTML5__ only adds functionality to [WTForms][], you need to
 have it installed too. But if you use the installation methods described
-above, it should have been taken care of.
+above, it should have been taken care of. Otherwise see the `requirements.txt`
+file for a list.
 
 
 ## Testing and Contribution
@@ -132,9 +133,9 @@ If something fails, please get in touch.
 
 ### Additional Requirements
 
-To run the test cases a few additional requirements need to be fulfilled: see
-the `requirements/testing.txt` file for a list. You can install all testing
-requirements like this: ``pip install -r requirements/testing.txt``.
+To run the test cases a few additional requirements need to be fulfilled. You
+can install all testing requirements like this: ``pip install -r
+requirements/testing.txt``.
 
 
 
