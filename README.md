@@ -1,6 +1,6 @@
 # WTForms HTML5
 
-![Travis Status][img-travis]
+![Build Status][badge-travis] ![Code Status][badge-landscape]
 
 Generates render keywords for widgets of [WTForms][] HTML5 fields.
 
@@ -149,4 +149,5 @@ requirements/testing.txt``.
 [pip]: http://www.pip-installer.org/en/latest/index.html
 [pip install instructions]: http://www.pip-installer.org/en/latest/installing.html
 
-[img-travis]: https://api.travis-ci.org/brutus/wtforms-html5.svg?branch=master
+[badge-travis]: https://api.travis-ci.org/brutus/wtforms-html5.svg?branch=master
+[badge-landscape]: https://landscape.io/github/brutus/wtforms-html5/master/landscape.svg?style=flat
