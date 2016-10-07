@@ -8,8 +8,10 @@ import os
 from codecs import open
 from setuptools import setup
 
-from wtforms_html5 import __version__, __doc__
 
+VERSION = '0.2.0'
+
+DESCRIPTION = 'Generates render keywords for widgets of WTForms HTML5 fields.'
 
 INSTALL_REQUIRES = [
   'wtforms',
@@ -28,39 +30,37 @@ EXTRAS_REQUIRE = {
 }
 
 
-def get_short_description(text):
-  """
-  Returns the first paragraph from *text*.
-
-  """
-  return [p.strip() for p in text.strip().split('\n\n')][0]
-
-
-def read_file(filename, paths=[]):
+def read_file(filename, prepend_paths=[]):
   """
   Returns the contents of *filename* (UTF-8).
 
-  If *paths* is set, join those before the *fielname*.
+  If *prepend_paths* is set, join those before the *fielname*.
+  If it is `True`, prepend the path to `setup.py`.
 
   """
-  if paths:
-    paths.append(filename)
-    filename = os.path.join(*paths)
+  if prepend_paths is True:
+    prepend_paths = [
+      os.path.abspath(os.path.dirname(__file__)),
+    ]
+  if prepend_paths:
+    prepend_paths.append(filename)
+    filename = os.path.join(*prepend_paths)
+  print(filename)
   with open(filename, encoding='utf-8') as f:
     return f.read()
 
 
 setup(
   name='wtforms-html5',
-  version=__version__,
+  version=VERSION,
   py_modules=['wtforms_html5'],
   requires=['wtforms'],
   install_requires=INSTALL_REQUIRES,
   extras_require=EXTRAS_REQUIRE,
   author='Brutus',
   author_email='brutus.dmc@googlemail.com',
-  description=get_short_description(__doc__),
-  long_description=read_file('README.rst'),
+  description=DESCRIPTION,
+  long_description=read_file('README.md'),
   url='https://github.com/brutus/wtforms-html5/',
   download_url='https://github.com/brutus/wtforms-html5/zipball/master',
   license='GNU GPLv3',
