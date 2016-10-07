@@ -65,9 +65,10 @@ as your meta class:
 >>> form = MyForm()
 ```
 
-The only difference is, that you include a `Meta` class, that inherits from
-`AutoAttrMeta`. Now you get some attributes created automatically for your
-fields:
+__The only difference is, that you include a `Meta` class, that inherits from
+`AutoAttrMeta`.__
+
+Now you get some attributes created automatically for your fields:
 
 ```py
 >>> form.test_field()
@@ -116,14 +117,14 @@ above, it should have been taken care of.
 
 ## Testing and Contribution
 
-__WTForms HTML5 Widgets__ is at home at: https://github.com/brutus/wtforms-html5/
+__WTForms HTML5__ is at home at: https://github.com/brutus/wtforms-html5/
 
 If you find any bugs, issues or anything, please use the [issue tracker][].
 
 ### Testing
 
 There are some __doctest__ in the module. You can run them from the _source
-directory_ like this: `python -m doctest wtformshtml5.py`. If you want to
+directory_ like this: `python -m doctest wtforms_html5.py`. If you want to
 run the __test cases__, run `python -m unittest discover`  (also from the
 _source directory_).
 
