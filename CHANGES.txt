@@ -23,6 +23,10 @@ meta class for forms instead. See `README.md` for more information.
 - updated docs and added badges to the docs
 - new CHANGELOG format
 
+### 0.2.2, 2016-10-07
+
+- __FIXED__ added `setup.py` to bumpversion configuration
+
 
 
 ## 0.1.0, 2012-11-10
