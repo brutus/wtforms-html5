@@ -15,9 +15,9 @@ _Changes_: _WTForms_ — beginning around version 1.0.4 — started to implement
 some of these features. The current (late 2016) development version — that
 should become version 3 — imo has enough support for them, so that to prevent
 the duplication of functionality, __WTForms HTML5__ dropped all the fields,
-widgets and validators — just use vanilla _WTForms_ from now on.
+widgets and validators — just use vanilla _WTForms_.
 
-_Current Function_: recent versions of __WTForms HTML5__(starting with 0.2)
+_Current Function_: recent versions of __WTForms HTML5__ (starting with 0.2)
 contain only one function: `get_html5_kwargs` — it adds the automatically
 generated keys to the _render keywords_ of a _WTForms_ field.
 
@@ -33,11 +33,13 @@ version of __WTForms HTML5__.
 
   Is set if the field has the ``required`` flag set.
 
-  This happens if you use the _DataRequired_ or _InputRequired_ validator.
+  This happens i.e. if you use the _DataRequired_ or _InputRequired_ validator.
+  The `required` attribute is used by browsers to indicate a required field.
 
 - __invalid__
 
   If the field got any validation errors, the CSS class _invalid_ is added.
+  The 'invalid' class is set by browsers if they detect errors on a field.
 
 - __min__ and __max__
 
@@ -140,7 +142,7 @@ _source directory_).
 
 If something fails, please get in touch.
 
-### Additional Requirements
+### Testing Requirements
 
 To run the test cases a few additional requirements need to be fulfilled. You
 can install all testing requirements like this: ``pip install -r

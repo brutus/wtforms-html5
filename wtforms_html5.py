@@ -1,16 +1,17 @@
 # -*- coding: UTF-8 -*-
 
 """
-Generates render keywords for widgets of WTForms HTML5 fields.
+Generates render keywords for `WTForms`_ HTML5 field's widgets.
 
-The :func:`get_html5_kwargs` generates rendering keywords for a field.
+The :func:`get_html5_kwargs` adds the automatically generated keys to the
+_render keywords_ of a `WTForms`_ field.
 
 The :cls:`AutoAttrMeta` can be included as a base class for the `Meta` class
-in your forms to handle this automatically for each field of the form.
+in your forms, to handle this automatically for each field of the form.
 
 
 Supported Auto–Attributes
-=========================
+-------------------------
 
 - **required**
 
@@ -20,13 +21,12 @@ Supported Auto–Attributes
 
 - **invalid**
 
-  If the field got any validation errors, the CSS class *invalid* gets set.
+  If the field got any validation errors, the CSS class *invalid* is added.
 
 - **min** and **max**
 
-  If either *Length* or *NumberRange* or *DateRange* is used as a validator
-  and sets a minimal or maximal value, the corresponding INPUT attribute is
-  set.
+  If either *Length* or *NumberRange* is used as a validator and sets a minimal
+  or maximal value, the corresponding INPUT attribute is set.
 
 - **title**
 
@@ -35,10 +35,10 @@ Supported Auto–Attributes
 
 
 Example
-=======
+-------
 
-Declare your form just like vanilla WTForms but include :cls:`AutoAttrMeta`
-as your meta class::
+Declare your form just like in vanilla *WTForms*, but include
+:cls:`AutoAttrMeta` as your meta class:
 
 >>> from wtforms import Form, StringField
 >>> from wtforms.validators import InputRequired, Length
@@ -53,27 +53,31 @@ as your meta class::
 ...   )
 >>> form = MyForm()
 
-The only difference is, that you include a `Meta` class that inherits from
-:cls:`AutoAttrMeta`. Now you get some attributes created automatically for
-your fields:
+**The only difference is, that you include a `Meta` class, that inherits from
+:cls:`AutoAttrMeta`.**
+
+This meta class sets the above mentioned attributes automatically for all the
+fields of the form:
 
 >>> form.test_field()
 '<input id="test_field" max="12" min="3" name="test_field" required \
 title="Just a test field." type="text" value="">'
 
-As you can see, the *min* and *max* attributes are created because you used
-the `Length` validator. The field also gets a *title* taken from the fields
-`description`. And the field is marked *required* because of the
-`InputRequired` validator.
+The *min* and *max* attributes are created because the `Length` validator was
+used. And the field is marked *required* because of the `InputRequired`
+validator. The field also gets a *title* taken from the fields `description`.
 
-If you validate the form and any errors pop up, the field would also get an
-*invalid* attribute::
+If you validate the form and any errors pop up, the field also get `invalid`
+added to its class:
 
 >>> form.validate()
 False
 >>> form.test_field()
 '<input class="invalid" id="test_field" max="12" min="3" name="test_field" \
 required title="Just a test field." type="text" value="">'
+
+
+.. _WTForms: https://wtforms.readthedocs.io/
 
 """
 
@@ -121,8 +125,8 @@ def get_html5_kwargs(field, render_kw=None):
 
     :required:
         Sets the *required* key if the `required` flag is set for the
-        field (mostly the case if it is set by validators). This is
-        used by browsers to indicate a required field.
+        field (this is mostly the case if it is set by validators). The
+        `required` attribute is used by browsers to indicate a required field.
 
     :invalid:
         Set (or appends) 'invalid' to the fields CSS class(es), if the *field*
@@ -130,7 +134,7 @@ def get_html5_kwargs(field, render_kw=None):
         errors on a field.
 
     :min / max:
-        Sets *min* and / or *max* keys if the `Length` or `NumberRange`
+        Sets *min* and / or *max* keys if a `Length` or `NumberRange`
         validator is using them.
 
     :title:
