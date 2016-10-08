@@ -4,21 +4,22 @@
 
 Generates render keywords for [WTForms][] HTML5 field's widgets.
 
-_Original Function_: This module used to add HTML5 support to _WTForms_.
+_Original Function_: This module used to add support for the new HTML5 INPUT
+elements to _WTForms_.
 
-It supported the new INPUT __types__ for fields and had also set some of the new
-INPUT __attributes__ automatically for the generated HTML Input elements (based
-on widget type and what kind of validator was set for the field).
+Besides supporting the new INPUT __types__ for fields, it also set some of the
+new INPUT __attributes__ automatically, based on widget type and what kind of
+validators where set for the field.
 
-_Changes_: _WTForms_ version 1.0.4 started to implement some of these features
-and the current (late 2016) development version — that should become version 3 —
-has enough support for all that features, that to prevent the duplication of
-functionality, current versions of __WTForms HTML5__ dropped all the fields,
-widgets and validators — just use vanilla _WTForms_.
+_Changes_: _WTForms_ — beginning around version 1.0.4 — started to implement
+some of these features. The current (late 2016) development version — that
+should become version 3 — imo has enough support for them, so that to prevent
+the duplication of functionality, __WTForms HTML5__ dropped all the fields,
+widgets and validators — just use vanilla _WTForms_ from now on.
 
-_Current Function_: recent versions (starting with 0.2) contain only one
-function: `get_html5_kwargs` — it adds the automatically generated keys to the
-_render keywords_ of a _WTForms_ field.
+_Current Function_: recent versions of __WTForms HTML5__(starting with 0.2)
+contain only one function: `get_html5_kwargs` — it adds the automatically
+generated keys to the _render keywords_ of a _WTForms_ field.
 
 A slim subclass of the new default _Meta_ class for forms is also provided:
 `AutoAttrMeta`. If you use this class as your forms _Meta_, you get the
@@ -72,18 +73,20 @@ as your meta class:
 __The only difference is, that you include a `Meta` class, that inherits from
 `AutoAttrMeta`.__
 
-Now you get some attributes created automatically for your fields:
+This meta class sets the above mentioned attributes automatically for all the
+fields of the form:
 
 ```py
 >>> form.test_field()
 '<input id="test_field" max="12" min="3" name="test_field" required title="Just a test field." type="text" value="">'
 ```
 
-The _min_ and _max_ attributes are created because you used the `Length`
-validator. And the field is marked _required_ because of the `InputRequired` validator. The field also gets a _title_ taken from the fields `description`.
+The _min_ and _max_ attributes are created because the `Length` validator was
+used. And the field is marked _required_ because of the `InputRequired`
+validator. The field also gets a _title_ taken from the fields `description`.
 
-If you validate the form and any errors pop up, the field would also get an
-_invalid_ attribute:
+If you validate the form and any errors pop up, the field also get `invalid`
+added to its class:
 
 ```py
 >>> form.validate()
@@ -95,7 +98,7 @@ False
 
 ## Install
 
-You can install __WTForms HTML5__ with [pip][] or from source.
+You can install __WTForms HTML5__ with _pip_ or from _source_.
 
 ### Install with pip
 
@@ -107,7 +110,10 @@ have it installed, see the [pip install instructions][].
 ### Install from source
 
 You can fetch the latest [sourceball][] from github and unpack it, or just
-clone this repository: `git clone git://github.com/brutus/wtforms-html5.git`.
+clone this repository:
+
+`git clone git://github.com/brutus/wtforms-html5.git`
+
 If you got the source, change into the directory and use _setup.py_:
 
 `python setup.py install`
@@ -116,8 +122,7 @@ If you got the source, change into the directory and use _setup.py_:
 
 Since __WTForms HTML5__ only adds functionality to [WTForms][], you need to
 have it installed too. But if you use the installation methods described
-above, it should have been taken care of. Otherwise see the `requirements.txt`
-file for a list.
+above, it should have been taken care of.
 
 
 ## Testing and Contribution
