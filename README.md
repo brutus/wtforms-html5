@@ -39,7 +39,7 @@ version of __WTForms HTML5__.
 - __invalid__
 
   If the field got any validation errors, the CSS class _invalid_ is added.
-  The 'invalid' class is set by browsers if they detect errors on a field.
+  The _invalid_ class is set by browsers if they detect errors on a field.
 
 - __min__ and __max__
 
