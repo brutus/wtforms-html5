@@ -1,10 +1,14 @@
-default: stylechecks
+default: lint clean
 
-test: stylechecks doctests unittests clean
+test: styletests doctests unittests clean
 
-stylechecks:
-	flake8 wtforms_html5.py
+lint:
+	pylint wtforms_html5.py
+	flake8 --doctests wtforms_html5.py
+
+styletests:
 	pylint --errors-only wtforms_html5.py
+	flake8 --count --doctests wtforms_html5.py
 
 doctests:
 	python -m doctest wtforms_html5.py
