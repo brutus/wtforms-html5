@@ -27,6 +27,11 @@ meta class for forms instead. See `README.md` for more information.
 
 - __FIXED__ added `setup.py` to bumpversion configuration
 
+### 0.2.3, 2016-10-08
+
+- Added some polish to the `makefile` and CI.
+- Improved the docs.
+
 
 
 ## 0.1.0, 2012-11-10
