@@ -4,7 +4,7 @@ python:
   - "3.4"
   - "3.5"
 before_script:
-  - make stylechecks
+  - make styletests
 script:
   - if [[ $TRAVIS_PYTHON_VERSION != '2.7' ]]; then make doctests; fi
   - make cover
