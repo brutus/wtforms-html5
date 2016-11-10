@@ -92,7 +92,7 @@ from wtforms.validators import (
 )
 
 
-__version__ = '0.2.3'
+__version__ = '0.2.4'
 __author__ = 'Brutus [DMC] <brutus.dmc@googlemail.com>'
 __license__ = 'GNU General Public License v3 or above - '\
               'http://www.opensource.org/licenses/gpl-3.0.html'
