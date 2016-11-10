@@ -1,6 +1,8 @@
 # WTForms HTML5
 
-![Build Status][badge-travis] ![Code Status][badge-landscape] ![Coverage Status][badge-coveralls]
+[![Build Status](https://travis-ci.org/brutus/wtforms-html5.svg?branch=master)](https://travis-ci.org/brutus/wtforms-html5)
+[![Coverage Status](https://coveralls.io/repos/github/brutus/wtforms-html5/badge.svg?branch=master)](https://coveralls.io/github/brutus/wtforms-html5?branch=master)
+[![Code Health](https://landscape.io/github/brutus/wtforms-html5/master/landscape.svg?style=flat)](https://landscape.io/github/brutus/wtforms-html5/master)
 
 Generates render keywords for [WTForms][] HTML5 field's widgets.
 
@@ -157,7 +159,3 @@ requirements/testing.txt``.
 [WTForms]: http://wtforms.simplecodes.com/
 [pip]: http://www.pip-installer.org/en/latest/index.html
 [pip install instructions]: http://www.pip-installer.org/en/latest/installing.html
-
-[badge-travis]: https://api.travis-ci.org/brutus/wtforms-html5.svg?branch=master
-[badge-landscape]: https://landscape.io/github/brutus/wtforms-html5/master/landscape.svg?style=flat
-[badge-coveralls]: https://coveralls.io/repos/github/brutus/wtforms-html5/badge.svg?branch=master
