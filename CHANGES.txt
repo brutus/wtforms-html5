@@ -9,19 +9,22 @@ meta class for forms instead. See `README.md` for more information.
 - _REMOVED_ all fields, widgets and validators
 - _REMOVED_ tests from the Python package
 - _ADDED_ meta class for forms
+- _ADDED_ plain unittest instead of nosetest
 - _ADDED_ requirement files
-- Uses plain unittest instead of nosetest
 - Configured [tox][] for automated testing
+
+
 
 ### 0.2.1, 2016-10-07
 
 - _REMOVED_ `run…` files and replaced them with a `makefile`
+- _ADDED_ `makefile`
 - _ADDED_ style check command (PEP–8…)
-- _ADDED_ test coverage analysis
-- _ADDED_ [Travis CI][] integration
-- _ADDED_ [Landscape][] integration
-- updated docs and added badges to the docs
-- new CHANGELOG format
+- _Updated_ docs and added badges to the docs
+- Test coverage analysis with [Coveralls][]
+- [Travis CI][] integration
+- [Landscape][] integration
+- New CHANGELOG format
 
 ### 0.2.2, 2016-10-07
 
@@ -31,6 +34,10 @@ meta class for forms instead. See `README.md` for more information.
 
 - Added some polish to the `makefile` and CI.
 - Improved the docs.
+
+### 0.2.4, 2016-11-10
+
+- _Updated_ the docs.
 
 
 
