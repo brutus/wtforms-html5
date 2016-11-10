@@ -21,7 +21,4 @@ cover:
 	coverage report -m
 
 clean:
-	find -not -path .git -type f -name '*.pyc' -delete
-	find -not -path .git -type d -name '__pycache__' -delete
-	find -not -path .git -type f -path '*.egg-info/*' -delete
-	find -not -path .git -type d -name '*.egg-info' -delete
+	find -not \( -path './.git/*' -o -path './.tox/*' \) -a \( -name '__pycache__' -o -name '*.pyc' -o -name '*.egg-info' -o -path '*.egg-info/*' \)
