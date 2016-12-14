@@ -13,8 +13,6 @@ meta class for forms instead. See `README.md` for more information.
 - _ADDED_ requirement files
 - Configured [tox][] for automated testing
 
-
-
 ### 0.2.1, 2016-10-07
 
 - _REMOVED_ `run…` files and replaced them with a `makefile`

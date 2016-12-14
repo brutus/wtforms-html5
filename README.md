@@ -4,54 +4,56 @@
 [![Coverage Status](https://coveralls.io/repos/github/brutus/wtforms-html5/badge.svg?branch=master)](https://coveralls.io/github/brutus/wtforms-html5?branch=master)
 [![Code Health](https://landscape.io/github/brutus/wtforms-html5/master/landscape.svg?style=flat)](https://landscape.io/github/brutus/wtforms-html5/master)
 
-Generates render keywords for [WTForms][] HTML5 field's widgets.
+__WTForms HTML5__ generates render keywords for HTML5 INPUT widgets used by the
+[WTForms][] library.
+
+## Evolution
 
 _Original Function_: This module used to add support for the new HTML5 INPUT
-elements to _WTForms_.
+elements to [WTForms][]. Besides supporting the new INPUT _types_, it also set
+some of the new _attributes_ automatically, based on widget type and what kind
+of validators where set for the field.
 
-Besides supporting the new INPUT __types__ for fields, it also set some of the
-new INPUT __attributes__ automatically, based on widget type and what kind of
-validators where set for the field.
-
-_Changes_: _WTForms_ — beginning around version 1.0.4 — started to implement
+_Changes_: [WTForms][] — beginning around version 1.0.4 — started to implement
 some of these features. The current (late 2016) development version — that
-should become version 3 — imo has enough support for them, so that to prevent
+should become version 3 — has enough support for them imo, so that to prevent
 the duplication of functionality, __WTForms HTML5__ dropped all the fields,
-widgets and validators — just use vanilla _WTForms_.
+widgets and validators — just use vanilla [WTForms][].
 
 _Current Function_: recent versions of __WTForms HTML5__ (starting with 0.2)
 contain only one function: `get_html5_kwargs` — it adds the automatically
-generated keys to the _render keywords_ of a _WTForms_ field.
-
-A slim subclass of the new default _Meta_ class for forms is also provided:
-`AutoAttrMeta`. If you use this class as your forms _Meta_, you get the
-automatic attributes for all fields in your form, just like in the original
-version of __WTForms HTML5__.
+generated keys to the _render keywords_ of a [WTForms][] field. A slim subclass
+of the new default _Meta_ class for forms is also provided: `AutoAttrMeta`. If
+you use this class as your forms _Meta_, you get the automatic attributes for
+all fields in your form, just like in the original version of __WTForms HTML5__.
 
 
 ## Supported Auto–Attributes
 
 - __required__
 
-  Is set if the field has the ``required`` flag set.
-
-  This happens i.e. if you use the _DataRequired_ or _InputRequired_ validator.
-  The `required` attribute is used by browsers to indicate a required field.
+  Is set if the field has the _required_ flag set. This happens i.e. if you use
+  the _DataRequired_ or _InputRequired_ validator. The `required` attribute is
+  used by browsers to indicate a required field (and most browsers won't
+  activate the forms action unless all required fields have content).
 
 - __invalid__
 
   If the field got any validation errors, the CSS class _invalid_ is added.
-  The _invalid_ class is set by browsers if they detect errors on a field.
+  The `invalid` class is also set by browsers if they detect errors on a field.
+  This validation errors detected by your code, are by default styled in the
+  same way as browser generated errors.
 
 - __min__ and __max__
 
-  If either _Length_ or _NumberRange_ is used as a validator and sets a minimal
-  or maximal value, the corresponding INPUT attribute is set.
+  If either _Length_ or _NumberRange_ is used as a validator to set minimal and
+  / or maximal values, the corresponding `min` / `max` INPUT attribute is set.
+  This allows for browser based validation of the values.
 
 - __title__
 
-  If no _title_ attribute is provided for a field, but a _description_, the
-  _description_ is used for the _title_.
+  If no _title_ is provided for a field, the _description_ (if one is set) is
+  used for the `title` attribute.
 
 
 ## Example
