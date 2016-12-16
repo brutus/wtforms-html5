@@ -1,9 +1,11 @@
-default: styletests clean
+default: lint clean
 
 test: styletests doctests unittests clean
 
+lint:
+	pylama -l pyflakes wtforms_html5.py
+
 styletests:
-	pyflakes wtforms_html5.py
 	pylama wtforms_html5.py
 
 doctests:
