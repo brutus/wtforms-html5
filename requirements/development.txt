@@ -1,3 +1,4 @@
 bumpversion
-flake8
-pylint
+pyflakes
+pylama
+pylama_pylint
