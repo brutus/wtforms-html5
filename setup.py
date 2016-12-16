@@ -9,7 +9,7 @@ from codecs import open
 from setuptools import setup
 
 
-VERSION = '0.2.4'
+VERSION = '0.3.0'
 
 DESCRIPTION = 'Generates render keywords for widgets of WTForms HTML5 fields.'
 
