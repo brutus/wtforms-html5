@@ -1,0 +1,8 @@
+---
+summary: >
+    Small code refactorin. — 2016-12-16
+changed:
+  - ♻️ Put each auto–setting in it's own function.
+  - 📦 Changed linting toolset from `flake8 <http://flake8.pycqa.org/en/latest/>` and `pylint <https://www.pylint.org/>` to `pylama <https://github.com/klen/pylama>`.
+updated:
+  - 📝 Updated docs.

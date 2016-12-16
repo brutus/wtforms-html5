@@ -1,6 +1,15 @@
 # Changelog for WTForms HTML5
 
 
+## 0.3.0, 2016-12-16
+
+Small refactoring:
+
+- each auto–setting has it's own function
+- changed linting toolset from [flake8][] and [pylint][] to [pylama][]
+- updated docs
+
+
 ## 0.2.0, 2016-10-06
 
 Huge refactoring. Dropping all fields, widgets and validators and include a new
