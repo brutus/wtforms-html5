@@ -21,11 +21,11 @@ the duplication of functionality, __WTForms HTML5__ dropped all the fields,
 widgets and validators — just use vanilla [WTForms][].
 
 _Current Function_: recent versions of __WTForms HTML5__ (starting with 0.2)
-contain only one function: `get_html5_kwargs` — it adds the automatically
-generated keys to the _render keywords_ of a [WTForms][] field. A slim subclass
-of the new default _Meta_ class for forms is also provided: `AutoAttrMeta`. If
-you use this class as your forms _Meta_, you get the automatic attributes for
-all fields in your form, just like in the original version of __WTForms HTML5__.
+contain a function: `get_html5_kwargs` — it adds the automatically generated
+keys to the _render keywords_ of a [WTForms][] field. A slim subclass of the new
+default _Meta_ class for forms is also provided: `AutoAttrMeta`. If you use this
+class as your forms _Meta_, you get the automatic attributes for all fields in
+your form, just like in the original version of __WTForms HTML5__.
 
 
 ## Supported Auto–Attributes
