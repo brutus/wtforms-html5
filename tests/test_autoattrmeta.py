@@ -12,6 +12,7 @@ from unittest import TestCase
 from wtforms.validators import (
     InputRequired,
     Length,
+    NumberRange,
 )
 
 from . import (
@@ -40,20 +41,37 @@ class TestMeta(TestCase):
 
     def test_minmax(self):
         # min
-        form = get_form(validators=[Length(min=3), ], use_meta=True)
+        form = get_form(validators=[NumberRange(min=3), ], use_meta=True)
         field = get_field(form)
         self.assertEqual(field.attrs['min'], '3')
         self.assertNotIn('max', field.attrs)
         # max
-        form = get_form(validators=[Length(max=8), ], use_meta=True)
+        form = get_form(validators=[NumberRange(max=8), ], use_meta=True)
         field = get_field(form)
         self.assertEqual(field.attrs['max'], '8')
         self.assertNotIn('min', field.attrs)
         # min + max
-        form = get_form(validators=[Length(min=3, max=8), ], use_meta=True)
+        form = get_form(validators=[NumberRange(min=3, max=8), ], use_meta=True)
         field = get_field(form)
         self.assertEqual(field.attrs['min'], '3')
         self.assertEqual(field.attrs['max'], '8')
+
+    def test_minmaxlength(self):
+        # min
+        form = get_form(validators=[Length(min=3), ], use_meta=True)
+        field = get_field(form)
+        self.assertEqual(field.attrs['minlength'], '3')
+        self.assertNotIn('maxlength', field.attrs)
+        # max
+        form = get_form(validators=[Length(max=8), ], use_meta=True)
+        field = get_field(form)
+        self.assertEqual(field.attrs['maxlength'], '8')
+        self.assertNotIn('minlength', field.attrs)
+        # min + max
+        form = get_form(validators=[Length(min=3, max=8), ], use_meta=True)
+        field = get_field(form)
+        self.assertEqual(field.attrs['minlength'], '3')
+        self.assertEqual(field.attrs['maxlength'], '8')
 
     def test_title(self):
         form = get_form(description='Some help text', use_meta=True)

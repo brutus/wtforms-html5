@@ -19,6 +19,7 @@ from wtforms.validators import (
 
 from wtforms_html5 import (
     MINMAX_VALIDATORS,
+    MINMAXLENGTH_VALIDATORS,
     get_html5_kwargs,
 )
 
@@ -140,7 +141,7 @@ class TestGetHtml5Kwargs(TestCase):
         self.assertTrue(form.validate())
         res = get_html5_kwargs(form.test_field)
         exp = {
-            'min': 5,
+            'minlength': 5,
         }
         self.assertEqual(res, exp)
         # invalid input
@@ -152,7 +153,7 @@ class TestGetHtml5Kwargs(TestCase):
         res = get_html5_kwargs(form.test_field)
         exp = {
             'class': 'invalid',
-            'min': 5,
+            'minlength': 5,
         }
         self.assertEqual(res, exp)
 
@@ -166,7 +167,7 @@ class TestGetHtml5Kwargs(TestCase):
         res = get_html5_kwargs(form.test_field, {'class': 'test'})
         exp = {
             'class': 'invalid test',
-            'min': 5,
+            'minlength': 5,
         }
         self.assertEqual(res, exp)
         # add to class_
@@ -178,7 +179,7 @@ class TestGetHtml5Kwargs(TestCase):
         res = get_html5_kwargs(form.test_field, {'class_': 'test zwo'})
         exp = {
             'class': 'invalid test zwo',
-            'min': 5,
+            'minlength': 5,
         }
         self.assertEqual(res, exp)
 
@@ -229,6 +230,57 @@ class TestGetHtml5Kwargs(TestCase):
                 res = get_html5_kwargs(form.test_field, render_kw)
                 self.assertEqual(res, exp)
                 # min + max
+                form = get_form(validators=[Validator(max=5, min=2)])
+                res = get_html5_kwargs(form.test_field, render_kw)
+                self.assertEqual(res, exp)
+
+
+    @SkipIfNoSubtests
+    def test_auto_minmaxlength(self):
+        for Validator in MINMAXLENGTH_VALIDATORS:
+            with self.subTest(Validator=Validator):
+                # minlength
+                form = get_form(validators=[Validator(min=5)])
+                res = get_html5_kwargs(form.test_field)
+                exp = {
+                    'minlength': 5,
+                }
+                self.assertEqual(res, exp)
+                # maxlength
+                form = get_form(validators=[Validator(max=5)])
+                res = get_html5_kwargs(form.test_field)
+                exp = {
+                    'maxlength': 5,
+                }
+                self.assertEqual(res, exp)
+                # minlength + maxlength
+                form = get_form(validators=[Validator(max=5, min=2)])
+                res = get_html5_kwargs(form.test_field)
+                exp = {
+                    'minlength': 2,
+                    'maxlength': 5,
+                }
+                self.assertEqual(res, exp)
+
+
+    @SkipIfNoSubtests
+    def test_auto_minmaxlength_no_overwrite(self):
+        render_kw = {
+            'minlength': 10,
+            'maxlength': 20,
+        }
+        exp = render_kw.copy()
+        for Validator in MINMAXLENGTH_VALIDATORS:
+            with self.subTest(Validator=Validator):
+                # minlength
+                form = get_form(validators=[Validator(min=5)])
+                res = get_html5_kwargs(form.test_field, render_kw)
+                self.assertEqual(res, exp)
+                # maxlength
+                form = get_form(validators=[Validator(max=5)])
+                res = get_html5_kwargs(form.test_field, render_kw)
+                self.assertEqual(res, exp)
+                # minlength + maxlength
                 form = get_form(validators=[Validator(max=5, min=2)])
                 res = get_html5_kwargs(form.test_field, render_kw)
                 self.assertEqual(res, exp)
