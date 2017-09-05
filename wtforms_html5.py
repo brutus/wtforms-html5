@@ -69,8 +69,8 @@ fields of the form:
 
 >>> f = form.test_field()
 >>> exp = (
-...  '<input id="test_field" max="12" min="3" name="test_field" required '
-...  'title="Just a test field." type="text" value="">'
+...  '<input id="test_field" maxlength="12" minlength="3" name="test_field" '
+...  'required title="Just a test field." type="text" value="">'
 ... )
 >>> assert f == exp
 
@@ -86,7 +86,7 @@ added to its class:
 >>> form.validate()
 False
 >>> exp = (
-... '<input class="invalid" id="test_field" max="12" min="3" '
+... '<input class="invalid" id="test_field" maxlength="12" minlength="3" '
 ... 'name="test_field" required title="Just a test field." type="text" '
 ... 'value="">'
 ... )
@@ -285,7 +285,8 @@ def get_html5_kwargs(field, render_kw=None, force=False):
     kwargs = set_required(field, kwargs, force)  # is field required?
     kwargs = set_invalid(field, kwargs)  # is field invalid?
     kwargs = set_minmax(field, kwargs, force)  # check validators for min/max
-    kwargs = set_minmaxlength(field, kwargs, force)  # check validators for minlength/maxlength
+    kwargs = set_minmaxlength(field, kwargs, force)
+    # check validators for minlength/maxlength
     kwargs = set_title(field, kwargs)  # missing tile?
     return kwargs
 
