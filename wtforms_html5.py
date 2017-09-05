@@ -116,8 +116,11 @@ __license__ = 'GNU General Public License v3 or above - '\
 
 
 MINMAX_VALIDATORS = (
-    Length,
     NumberRange,
+)
+
+MINMAXLENGTH_VALIDATORS = (
+    Length,
 )
 
 
@@ -190,6 +193,38 @@ def set_minmax(field, render_kw=None, force=False):
     return render_kw
 
 
+def set_minmaxlength(field, render_kw=None, force=False):
+    """
+    Returns *render_kw* with *minlength* and *maxlength* set if validators use
+    them.
+
+    Sets *minlength* and / or *maxlength* keys if there is a `Length` validator
+    present and the corresponding parameters (i.e. `min` or `max`) are set.
+
+    ..note::
+
+        This won't change keys already present unless *force* is used.
+
+    """
+    if render_kw is None:
+        render_kw = {}
+    for validator in field.validators:
+        if isinstance(validator, MINMAXLENGTH_VALIDATORS):
+            if 'minlength' not in render_kw or force:
+                v_min = getattr(validator, 'min', -1)
+                if v_min not in (-1, None):
+                    render_kw['minlength'] = v_min
+            if 'maxlength' not in render_kw or force:
+                v_max = getattr(validator, 'max', -1)
+                if v_max not in (-1, None):
+                    render_kw['maxlength'] = v_max
+            # Inconsistency: Length validator uses min and max for specifying
+            #                length limits while HTML5 uses minlength and
+            #                maxlength (attributes of input element) for the
+            #                same purpose.
+    return render_kw
+
+
 def set_title(field, render_kw=None):
     """
     Returns *render_kw* with *min* and *max* set if required.
@@ -250,6 +285,7 @@ def get_html5_kwargs(field, render_kw=None, force=False):
     kwargs = set_required(field, kwargs, force)  # is field required?
     kwargs = set_invalid(field, kwargs)  # is field invalid?
     kwargs = set_minmax(field, kwargs, force)  # check validators for min/max
+    kwargs = set_minmaxlength(field, kwargs, force)  # check validators for minlength/maxlength
     kwargs = set_title(field, kwargs)  # missing tile?
     return kwargs
 

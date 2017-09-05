@@ -6,3 +6,5 @@ MANIFEST
 dist/
 build/
 misc/
+venv/
+.vscode/
