@@ -7,7 +7,7 @@ from unittest import SkipTest
 from functools import wraps
 
 try:
-    from werkzeug.utils import MultiDict
+    from werkzeug.datastructures import MultiDict
 except ImportError:
     MultiDict = None
 
