@@ -1,24 +1,17 @@
+# pylama:ignore=C0111
+
 """
 Tests for the :cls:`wtforms_html5.AutoAttrMeta` class.
 
 """
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
-from __future__ import print_function
+from __future__ import absolute_import, print_function, unicode_literals
 
 from unittest import TestCase
 
-from wtforms.validators import (
-    InputRequired,
-    Length,
-    NumberRange,
-)
+from wtforms.validators import InputRequired, Length, NumberRange
 
-from . import (
-    get_form,
-    get_field,
-)
+from . import get_field, get_form
 
 
 class TestMeta(TestCase):

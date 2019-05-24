@@ -1,10 +1,12 @@
-from __future__ import absolute_import
-from __future__ import unicode_literals
+# pylama:ignore=C0111
+from __future__ import absolute_import, unicode_literals
 
 import sys
-
-from unittest import SkipTest
 from functools import wraps
+from unittest import SkipTest
+
+from wtforms import Form, StringField
+from wtforms_html5 import AutoAttrMeta
 
 try:
     from werkzeug.datastructures import MultiDict
@@ -16,15 +18,8 @@ try:
 except ImportError:
     BeautifulSoup = None
 
-from wtforms import (
-    Form,
-    StringField,
-)
 
-from wtforms_html5 import AutoAttrMeta
-
-
-def get_form(form_data={}, flags=[], use_meta=False, **kwargs):
+def get_form(form_data=None, flags=None, use_meta=False, **kwargs):
     """
     Returns a WTForms :cls:`Form`.
 
@@ -36,10 +31,12 @@ def get_form(form_data={}, flags=[], use_meta=False, **kwargs):
     used to fill the form using the :meth:`Form.process` method.
 
     """
+    form_data = form_data or {}
+    flags = flags or []
     meta_class = AutoAttrMeta if use_meta else object
 
-    class TestForm(Form):
-        class Meta(meta_class):
+    class TestForm(Form): # noqa
+        class Meta(meta_class): #noqa
             pass
         test_field = StringField('Testfield', **kwargs)
 
@@ -74,7 +71,7 @@ def get_field(form, fieldname='test_field'):
     return BeautifulSoup(field(), 'html.parser').input
 
 
-def SkipIfNoSubtests(f):
+def SkipIfNoSubtests(f):  # noqa
     """
     Decorator that checks that the subtest feature of unittest is available.
 

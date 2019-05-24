@@ -28,11 +28,12 @@ Supported Auto–Attributes
   field. This validation errors detected by your code, are by default styled
   in the same way as browser generated errors.
 
-- *min* and *max*
+- *min* / *max* and *minlength* / *maxlength*
 
   If either _Length_ or _NumberRange_ is used as a validator to set minimal
-  and / or maximal values, the corresponding `min` / `max` INPUT attribute is
-  set. This allows for browser based validation of the values.
+  and / or maximal values, the corresponding INPUT attribute is
+  set (based on which validator is used). This allows for browser based
+  validation of the values.
 
 - *title*
 
@@ -74,8 +75,6 @@ fields of the form:
 ... )
 >>> assert f == exp
 
-
-
 The _min_ and _max_ attributes are created because the `Length` validator was
 used. And the field is marked _required_ because of the `InputRequired`
 validator. The field also gets a _title_ taken from the fields `description`.
@@ -98,16 +97,11 @@ False
 
 """
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
+from __future__ import absolute_import, unicode_literals
 
 from wtforms.fields.core import UnboundField
 from wtforms.meta import DefaultMeta
-from wtforms.validators import (
-    Length,
-    NumberRange,
-)
-
+from wtforms.validators import Length, NumberRange
 
 __version__ = '0.3.0'
 __author__ = 'Brutus [DMC] <brutus.dmc@googlemail.com>'
@@ -170,8 +164,8 @@ def set_minmax(field, render_kw=None, force=False):
     """
     Returns *render_kw* with *min* and *max* set if validators use them.
 
-    Sets *min* and / or *max* keys if a `Length` or `NumberRange` validator is
-    using them.
+    Sets *min* and / or *max* keys if one of the validators from
+    `MINMAX_VALIDATORS` is using them.
 
     ..note::
 
@@ -198,8 +192,9 @@ def set_minmaxlength(field, render_kw=None, force=False):
     Returns *render_kw* with *minlength* and *maxlength* set if validators use
     them.
 
-    Sets *minlength* and / or *maxlength* keys if there is a `Length` validator
-    present and the corresponding parameters (i.e. `min` or `max`) are set.
+    Sets *minlength* and / or *maxlength* keys if one of the validators from
+    `MINMAXLENGTH_VALIDATORS` is present and the corresponding parameters (i.e.
+    `min` or `max`) are set.
 
     ..note::
 
@@ -227,7 +222,7 @@ def set_minmaxlength(field, render_kw=None, force=False):
 
 def set_title(field, render_kw=None):
     """
-    Returns *render_kw* with *min* and *max* set if required.
+    Returns *render_kw* with missing *title* set to *description*.
 
     If the field got a *description* but no *title* key is set, the *title* is
     set to *description*.
@@ -269,9 +264,9 @@ def get_html5_kwargs(field, render_kw=None, force=False):
         got any errors. 'invalid' is also set by browsers if they detect
         errors on a field.
 
-    :min / max:
-        Sets *min* and / or *max* keys if a `Length` or `NumberRange`
-        validator is using them.
+    :min / max and minlength / maxlength:
+        Sets those keys if a  or `NumberRange` or `Length` validator is using
+        them.
 
     :title:
         If the field got a *description* but no *title* key is set, the

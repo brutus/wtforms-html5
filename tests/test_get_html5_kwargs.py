@@ -1,32 +1,20 @@
+# pylama:ignore=C0111
+
 """
 Tests for the :func:`wtforms_html5.get_html5_kwargs` function.
 
 """
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
-from __future__ import print_function
-
+from __future__ import absolute_import, print_function, unicode_literals
 
 from unittest import TestCase
 
 from wtforms import StringField
-from wtforms.validators import (
-    InputRequired,
-    DataRequired,
-    Length,
-)
+from wtforms.validators import DataRequired, InputRequired, Length
+from wtforms_html5 import (MINMAX_VALIDATORS, MINMAXLENGTH_VALIDATORS,
+                           get_html5_kwargs)
 
-from wtforms_html5 import (
-    MINMAX_VALIDATORS,
-    MINMAXLENGTH_VALIDATORS,
-    get_html5_kwargs,
-)
-
-from . import (
-    get_form,
-    SkipIfNoSubtests,
-)
+from . import SkipIfNoSubtests, get_form
 
 
 class TestGetHtml5Kwargs(TestCase):
@@ -234,7 +222,6 @@ class TestGetHtml5Kwargs(TestCase):
                 res = get_html5_kwargs(form.test_field, render_kw)
                 self.assertEqual(res, exp)
 
-
     @SkipIfNoSubtests
     def test_auto_minmaxlength(self):
         for Validator in MINMAXLENGTH_VALIDATORS:
@@ -261,7 +248,6 @@ class TestGetHtml5Kwargs(TestCase):
                     'maxlength': 5,
                 }
                 self.assertEqual(res, exp)
-
 
     @SkipIfNoSubtests
     def test_auto_minmaxlength_no_overwrite(self):
