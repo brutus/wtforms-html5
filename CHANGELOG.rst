@@ -2,6 +2,69 @@
 CHANGELOG
 =========
 
+.. _CHANGELOG_v0.4.0:
+
+v0.4.0
+======
+
+.. _CHANGELOG_v0.4.0_Summary:
+
+Summary
+-------
+
+All around update. — 2019-05-24
+
+
+.. _CHANGELOG_v0.4.0_Added Features:
+
+Added Features
+--------------
+
+- ✅ Added tested support for Python ``3.6`` and ``3.7``.
+
+- 👥 Added new contributer: `Gowee <https://github.com/Gowee>`_ - Thanks!
+
+
+.. _CHANGELOG_v0.4.0_Changes:
+
+Changes
+-------
+
+- 📦 Added *Pipfile* for `Pipenv <https://github.com/pypa/pipenv>`_.
+
+- 🚨 Use `autopep8 <https://github.com/hhatto/autopep8>`_ for automatic formating.
+
+- 📝 Use `reno <https://pypi.org/project/reno/>`_ for CHANGELOG generation.
+
+
+.. _CHANGELOG_v0.4.0_Updates:
+
+Updates
+-------
+
+- 🏗  Updated ``Makefile``.
+
+- 📝 Updated docs.
+
+- 👽 New import path for ``MultiDict`` from `Werkzeug <https://palletsprojects.com/p/werkzeug/>`_.
+
+
+.. _CHANGELOG_v0.4.0_Removed:
+
+Removed
+-------
+
+- 🔥 Removed old ``CHANGES.md``.
+
+
+.. _CHANGELOG_v0.4.0_Fixes:
+
+Fixes
+-----
+
+- ✨ Added support for ``maxlenght`` and ``minlength``. **Thanks** to `Gowee <https://github.com/Gowee>`_. — `<https://github.com/brutus/wtforms-html5/issues/4>`_
+
+
 .. _CHANGELOG_v0.3.0:
 
 v0.3.0
