@@ -1,0 +1,35 @@
+---
+stop_at_branch_base: yes
+prelude_section_name: summary
+unreleased_version_title: Unreleased
+sections:
+  - [critical, Important Information]
+  - [security, Security Notes]
+  - [added, Added Features]
+  - [changed, Changes]
+  - [updated, Updates]
+  - [removed, Removed]
+  - [fixed, Fixes]
+  - [issues, Known Issues]
+template: |
+  ---
+  summary: >
+      Replace this text with content to appear at the top of the section for
+      this release. All of the prelude content is merged together. Remove the
+      section if it is not needed.
+  critical:
+    - List critical notes here, or remove this section.
+  security:
+    - List security notes here, or remove this section.
+  added:
+    - List new features here, or remove this section.
+  changed:
+    - List changes here, or remove this section.
+  updated:
+    - List updates here, or remove this section.
+  removed:
+    - List removed stuff here, or remove this section.
+  fixed:
+    - List fixes here, or remove this section.
+  issues:
+    - List known issues here, or remove this section.
