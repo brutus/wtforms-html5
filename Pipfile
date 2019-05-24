@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+beautifulsoup4 = "*"
+bumpversion = "*"
+pyflakes = "*"
+pylama = "*"
+tox = "*"
+coverage = "*"
+Werkzeug = "*"
+pylama_pylint = "*"
+
+[packages]
+WTForms = "*"
+
+[requires]
+python_version = "3.7"
