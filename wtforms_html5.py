@@ -103,7 +103,7 @@ from wtforms.fields.core import UnboundField
 from wtforms.meta import DefaultMeta
 from wtforms.validators import Length, NumberRange
 
-__version__ = '0.3.0'
+__version__ = '0.4.0'
 __author__ = 'Brutus [DMC] <brutus.dmc@googlemail.com>'
 __license__ = 'GNU General Public License v3 or above - '\
               'http://www.opensource.org/licenses/gpl-3.0.html'
