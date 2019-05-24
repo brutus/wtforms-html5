@@ -1,10 +1,10 @@
 ---
 summary: >
     Huge refactoring. Dropping all fields, widgets and validators and include a
-    new meta class for forms instead. See `README.md`_ for more information.
+    new meta class for forms instead. See `<README.md>`_ for more information.
     — 2016-10-06
 added:
-  - ✅ Configured `tox <https://tox.readthedocs.io/>` for automated testing.
+  - ✅ Configured `tox <https://tox.readthedocs.io/>`_ for automated testing.
   - 📦 Added requirement files.
 changed:
   - ♻️ Use *meta class* for forms.

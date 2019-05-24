@@ -4,9 +4,9 @@ summary: >
 added:
   - 🏗 Added Makefile.
   - 🚨 Added style check command (PEP–8…).
-  - ✅ Test coverage analysis with `Coveralls <https://coveralls.io/>`.
-  - 👷 `Travis CI <https://travis-ci.org/>` integration.
-  - 👷 `Landscape <https://landscape.io/>` integration.
+  - ✅ Test coverage analysis with `Coveralls <https://coveralls.io/>`_.
+  - 👷 `Travis CI <https://travis-ci.org/>`_ integration.
+  - 👷 `Landscape <https://landscape.io/>`_ integration.
 changed:
   - 📝 New ``CHANGELOG`` format.
 updated:
