@@ -1,5 +1,5 @@
 autopep8==1.4.4
-bumpversion
+bumpversion==0.5.3
 pyflakes
 pylama
 pylama_pylint
