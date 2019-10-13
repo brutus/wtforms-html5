@@ -1,2 +1,2 @@
 werkzeug==0.16.0
-beautifulsoup4
+beautifulsoup4==4.8.1
