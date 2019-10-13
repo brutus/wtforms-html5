@@ -1,2 +1,2 @@
-werkzeug
+werkzeug==0.16.0
 beautifulsoup4
