@@ -2,4 +2,4 @@ autopep8==1.4.4
 bumpversion==0.5.3
 pyflakes==2.1.1
 pylama==7.7.1
-pylama_pylint
+pylama_pylint==3.1.1
