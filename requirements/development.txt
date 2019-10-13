@@ -1,4 +1,4 @@
-autopep8
+autopep8==1.4.4
 bumpversion
 pyflakes
 pylama
