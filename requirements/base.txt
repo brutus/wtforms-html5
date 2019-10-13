@@ -1,1 +1,1 @@
-wtforms
+wtforms==2.2.1
