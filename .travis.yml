@@ -1,3 +1,4 @@
+---
 language: python
 python:
   - "2.7"
@@ -5,14 +6,17 @@ python:
   - "3.5"
   - "3.6"
   - "3.7"
+  - "3.8"
+  - "3.9"
 before_script:
-  - make styletests
+  - pre-commit install
+  - pre-commit run --all-files
 script:
-  - if [[ $TRAVIS_PYTHON_VERSION != '2.7' ]]; then make doctests; fi
-  - make cover
+  - python -m doctest wtforms_html5.py
+  - python -m unittest discover
 branches:
   only:
-    - master
+    - main
 after_success:
   - pip install coveralls
   - coveralls
