@@ -1,7 +1,8 @@
 ---
-stop_at_branch_base: yes
+stop_at_branch_base: true
 prelude_section_name: summary
 unreleased_version_title: Unreleased
+add_release_date: true
 sections:
   - [critical, Important Information]
   - [security, Security Notes]

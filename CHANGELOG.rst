@@ -7,6 +7,8 @@ CHANGELOG
 v0.4.0
 ======
 
+Release Date: 2019-05-24
+
 .. _CHANGELOG_v0.4.0_Summary:
 
 Summary
@@ -70,6 +72,8 @@ Fixes
 v0.3.0
 ======
 
+Release Date: 2019-05-24
+
 .. _CHANGELOG_v0.3.0_Summary:
 
 Summary
@@ -101,6 +105,8 @@ Updates
 v0.2.4
 ======
 
+Release Date: 2019-05-24
+
 .. _CHANGELOG_v0.2.4_Summary:
 
 Summary
@@ -120,6 +126,8 @@ Updates
 
 v0.2.3
 ======
+
+Release Date: 2019-05-24
 
 .. _CHANGELOG_v0.2.3_Summary:
 
@@ -143,6 +151,8 @@ Updates
 v0.2.2
 ======
 
+Release Date: 2019-05-24
+
 .. _CHANGELOG_v0.2.2_Summary:
 
 Summary
@@ -162,6 +172,8 @@ Fixes
 
 v0.2.1
 ======
+
+Release Date: 2019-05-24
 
 .. _CHANGELOG_v0.2.1_Summary:
 
@@ -216,6 +228,8 @@ Removed
 v0.2.0
 ======
 
+Release Date: 2019-05-24
+
 .. _CHANGELOG_v0.2.0_Summary:
 
 Summary
@@ -269,6 +283,8 @@ Removed
 v0.1.2
 ======
 
+Release Date: 2019-05-24
+
 .. _CHANGELOG_v0.1.2_Summary:
 
 Summary
@@ -289,6 +305,8 @@ Added Features
 v0.1.1
 ======
 
+Release Date: 2019-05-24
+
 .. _CHANGELOG_v0.1.1_Summary:
 
 Summary
@@ -308,6 +326,8 @@ Fixes
 
 v0.1.0
 ======
+
+Release Date: 2019-05-24
 
 .. _CHANGELOG_v0.1.0_Summary:
 
