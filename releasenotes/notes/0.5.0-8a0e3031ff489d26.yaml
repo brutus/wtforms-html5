@@ -1,0 +1,20 @@
+---
+summary: >
+  Moved to a ``src/`` layout. Also differentiate more between dev- and install
+  dependencies. Local development is done via ``Makefile`` (and virtual
+  environment, with package in *edit-able* mode), CI testing via ``tox`` (and
+  generated environments, with distributed package version).
+added:
+  - 🚨 Added *editorconfig* configuration.
+  - 🚨 Added *pre-commit* configuration.
+changed:
+  - 🏗 Switched to a ``src/`` layout. Install package editable for dev setup.
+  - >
+    📦 Switched to a contemporary (declarative) build setup with ``setup.cfg``
+    and ``build``.
+  - >
+    📌 Only development requirements are kept in *requirement files* (unpinned).
+    Package dependencies are kept in ``setup.cfg`` (loosely pinned as needed).
+  - 🚨 Moved all linting to *pre-commit* (and *Black*).
+removed:
+  - 📦 Ditched *Pipfile* (and related tooling).
