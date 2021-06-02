@@ -1,8 +1,8 @@
 # WTForms HTML5
 
-[![Build Status](https://travis-ci.org/brutus/wtforms-html5.svg?branch=master)](https://travis-ci.org/brutus/wtforms-html5)
-[![Coverage Status](https://coveralls.io/repos/github/brutus/wtforms-html5/badge.svg?branch=master)](https://coveralls.io/github/brutus/wtforms-html5?branch=master)
-[![Code Health](https://landscape.io/github/brutus/wtforms-html5/master/landscape.svg?style=flat)](https://landscape.io/github/brutus/wtforms-html5/master)
+[![Build Status](https://travis-ci.org/brutus/wtforms-html5.svg?branch=main)](https://travis-ci.org/brutus/wtforms-html5)
+[![Coverage Status](https://coveralls.io/repos/github/brutus/wtforms-html5/badge.svg?branch=main)](https://coveralls.io/github/brutus/wtforms-html5?branch=main)
+[![Code Health](https://landscape.io/github/brutus/wtforms-html5/main/landscape.svg?style=flat)](https://landscape.io/github/brutus/wtforms-html5/main)
 
 **WTForms HTML5** generates render keywords for HTML5 INPUT widgets used by the
 [WTForms][] library.
@@ -16,11 +16,11 @@ of validators where set for the field.
 
 _Changes_: [WTForms][] — beginning around version 1.0.4 — started to implement
 some of these features. As of late 2016 the development version — that
-should become version 3 — has enough support for them imo, so that to prevent
+should become version 3 — has enough support for them IMO, so that to prevent
 the duplication of functionality, **WTForms HTML5** dropped all the fields,
 widgets and validators — just use vanilla [WTForms][].
 
-_Current Function_: starting with `0.2` versions of **WTForms HTML5** merly
+_Current Function_: starting with `0.2` versions of **WTForms HTML5** merely
 contain one function: `get_html5_kwargs` — it adds the automatically generated
 keys to the _render keywords_ of a [WTForms][] field. A slim subclass of the new
 default _Meta_ class for forms is also provided: `AutoAttrMeta`. If you use this
@@ -29,31 +29,31 @@ your form, just like in the original version of **WTForms HTML5**.
 
 ## Supported Auto–Attributes
 
-- **required**
+-   **required**
 
-  Is set if the field has the _required_ flag set. This happens i.e. if you use
-  the _DataRequired_ or _InputRequired_ validator. The `required` attribute is
-  used by browsers to indicate a required field (and most browsers won't
-  activate the forms action unless all required fields have content).
+    Is set if the field has the _required_ flag set. This happens i.e. if you use
+    the _DataRequired_ or _InputRequired_ validator. The `required` attribute is
+    used by browsers to indicate a required field (and most browsers won't
+    activate the forms action unless all required fields have content).
 
-- **invalid**
+-   **invalid**
 
-  If the field got any validation errors, the CSS class _invalid_ is added. The
-  `invalid` class is also set by browsers, if they detect errors on a field.
-  This validation errors detected by your code, are then by default styled in
-  the same way as browser generated errors.
+    If the field got any validation errors, the CSS class _invalid_ is added. The
+    `invalid` class is also set by browsers, if they detect errors on a field.
+    The validation errors detected by your code, are then by default styled in
+    the same way as browser generated errors.
 
-- **min** / **max** and **minlength** / **maxlength**
+-   **min** / **max** and **minlength** / **maxlength**
 
-  If either _Length_ or _NumberRange_ is used as a validator to set minimal
-  and / or maximal values, the corresponding INPUT attribute is
-  set (based on which validator is used). This allows for browser based
-  validation of the values.
+    If either _Length_ or _NumberRange_ is used as a validator to set minimal
+    and / or maximal values, the corresponding INPUT attribute is
+    set (based on which validator is used). This allows for browser based
+    validation of the values.
 
-- **title**
+-   **title**
 
-  If no _title_ is provided for a field, the _description_ (if one is set) is
-  used for the `title` attribute.
+    If no _title_ is provided for a field, the _description_ (if one is set) is
+    used for the `title` attribute.
 
 ## Example
 
@@ -105,53 +105,38 @@ False
 
 You can install **WTForms HTML5** with _pip_ or from _source_.
 
-### Install with pip
-
 [pip][] is _"a tool for installing and managing Python packages"_. If you don't
 have it installed, see the [pip install instructions][].
 
-`pip install wtforms-html5`
-
-### Install from source
-
-You can fetch the latest [sourceball][] from github and unpack it, or just
-clone this repository:
-
-`git clone git://github.com/brutus/wtforms-html5.git`
-
-If you got the source, change into the directory and use _setup.py_:
-
-`python setup.py install`
+```shell
+pip install --user wtforms-html5
+```
 
 ### Install Requirements
 
 Since **WTForms HTML5** only adds functionality to [WTForms][], you need to
-have it installed too. But if you use the installation methods described
+have it installed too. But if you use the installation method described
 above, it should have been taken care of.
 
 ## Testing and Contribution
 
 **WTForms HTML5** is at home at: https://github.com/brutus/wtforms-html5/
 
+You can run `make setup` after checkout, to setup a dev environment.
+
 If you find any bugs, issues or anything, please use the [issue tracker][].
 
 ### Testing
 
-There are some **doctest** in the module. You can run them from the _source
-directory_ like this: `python -m doctest wtforms_html5.py`. If you want to
-run the **test cases**, run `python -m unittest discover` (also from the
-_source directory_).
+You can run the provided **doctest** like this: `make doctest`. If you want to
+run the **test cases**, run `make unittest` (or `make coverage`). You can also
+run `make tests` to run this for all supported versions (this might take some
 
 If something fails, please get in touch.
-
-### Testing Requirements
-
-To run the test cases a few additional requirements need to be fulfilled. You
-can install all testing requirements like this: `pip install -r requirements/testing.txt`.
 
 [home]: https://github.com/brutus/wtforms-html5/
 [sourceball]: https://github.com/brutus/wtforms-html5/zipball/master
 [issue tracker]: https://github.com/brutus/wtforms-html5/issues
-[wtforms]: http://wtforms.simplecodes.com/
-[pip]: http://www.pip-installer.org/en/latest/index.html
-[pip install instructions]: http://www.pip-installer.org/en/latest/installing.html
+[wtforms]: https://wtforms.readthedocs.io/
+[pip]: https://pip.pypa.io/
+[pip install instructions]: https://pip.pypa.io/en/stable/installing/
