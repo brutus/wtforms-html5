@@ -1,11 +1,14 @@
 # pylama:ignore=C0111
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import
+from __future__ import unicode_literals
 
 import sys
 from functools import wraps
 from unittest import SkipTest
 
-from wtforms import Form, StringField
+from wtforms import Form
+from wtforms import StringField
+
 from wtforms_html5 import AutoAttrMeta
 
 try:
@@ -35,10 +38,11 @@ def get_form(form_data=None, flags=None, use_meta=False, **kwargs):
     flags = flags or []
     meta_class = AutoAttrMeta if use_meta else object
 
-    class TestForm(Form): # noqa
-        class Meta(meta_class): #noqa
+    class TestForm(Form):  # noqa
+        class Meta(meta_class):  # noqa
             pass
-        test_field = StringField('Testfield', **kwargs)
+
+        test_field = StringField("Testfield", **kwargs)
 
     # create instance
     form = TestForm()
@@ -50,25 +54,21 @@ def get_form(form_data=None, flags=None, use_meta=False, **kwargs):
     # process data
     if form_data:
         if MultiDict is None:
-            raise SkipTest(
-                'This test requires `MultiDict` from `Werkzeug`.'
-            )
+            raise SkipTest("This test requires `MultiDict` from `Werkzeug`.")
         form.process(MultiDict(form_data))
 
     return form
 
 
-def get_field(form, fieldname='test_field'):
+def get_field(form, fieldname="test_field"):
     """
     Returns *fieldname* from *form* as an BeautifulSoup object.
 
     """
     if BeautifulSoup is None:
-        raise SkipTest(
-            'This test requires `BeautifulSoup`.'
-        )
+        raise SkipTest("This test requires `BeautifulSoup`.")
     field = getattr(form, fieldname)
-    return BeautifulSoup(field(), 'html.parser').input
+    return BeautifulSoup(field(), "html.parser").input
 
 
 def SkipIfNoSubtests(f):  # noqa
@@ -80,11 +80,11 @@ def SkipIfNoSubtests(f):  # noqa
         SkipTest: on Python < 3.4
 
     """
+
     @wraps(f)
     def wrapper(*args, **kwargs):
         if sys.version_info < (3, 4):
-            raise SkipTest(
-                'This test requires subtest and needs `Python >= 3.4`.'
-            )
+            raise SkipTest("This test requires subtest and needs `Python >= 3.4`.")
         return f(*args, **kwargs)
+
     return wrapper
