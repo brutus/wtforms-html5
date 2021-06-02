@@ -1,2 +1,4 @@
-werkzeug
 beautifulsoup4
+coverage
+tox
+werkzeug

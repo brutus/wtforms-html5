@@ -1,4 +1,4 @@
--r requirements/base.txt
--r requirements/testing.txt
+-e .
 -r requirements/development.txt
--r requirements/ci.txt
+-r requirements/lint.txt
+-r requirements/testing.txt
