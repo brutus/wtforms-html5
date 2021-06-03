@@ -1,3 +1,3 @@
 beautifulsoup4
 coverage
-werkzeug
+werkzeug==2.0.1
