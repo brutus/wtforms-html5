@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 """
 Generates render keywords for `WTForms`_ HTML5 field's widgets.
 

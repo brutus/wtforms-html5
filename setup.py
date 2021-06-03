@@ -22,6 +22,7 @@ def read_file(filename):
 setup(
     name="wtforms-html5",
     version=VERSION,
+    package_dir={"": "src"},
     py_modules=["wtforms_html5"],
     requires=["wtforms"],
     install_requires=INSTALL_REQUIRES,
