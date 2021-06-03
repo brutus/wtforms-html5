@@ -2,7 +2,7 @@
 	setup setup-venv setup-requirements setup-pre-commit \
 	upgrade freeze \
 	lint \
-	doctest unittest coverage \
+	doctest unittest coverage tests \
 	change clog \
 	release \
 	clean full-clean build publish
@@ -44,6 +44,9 @@ unittests:
 coverage:
 	.venv/bin/coverage run --append --source wtforms_html5 -m unittest discover
 	.venv/bin/coverage report -m
+
+tests:
+	.venv/bin/tox
 
 
 change: slug ?= $(shell tr -dc A-Za-z0-9 < /dev/urandom | head -c9)

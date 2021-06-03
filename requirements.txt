@@ -2,3 +2,4 @@
 -r requirements/development.txt
 -r requirements/lint.txt
 -r requirements/testing.txt
+-r requirements/ci.txt
