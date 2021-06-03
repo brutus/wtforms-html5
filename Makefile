@@ -86,7 +86,7 @@ full-clean: clean
 
 
 build: clean
-	.venv/bin/python setup.py sdist bdist_wheel
+	.venv/bin/python -m build
 
 
 publish: build
