@@ -1,0 +1,31 @@
+name: coverage
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  coveralls:
+    name: send coverage report to coveralls.io
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: Install dependencies
+        run: >-
+          pip install
+          -r requirements/testing.txt
+          -r requirements/coverage.txt
+          coveralls
+          .
+      - name: Get coverage
+        run: coverage run --source wtforms_html5 -m unittest discover
+      - name: Show report
+        run: coverage report -m
+      - name: send report to coveralls
+        run: coveralls
+        env:
+          GITHUB_TOKEN: ${{ secrets.COVERALLS_GITHUB_TOKEN }}
