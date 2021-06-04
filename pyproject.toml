@@ -4,3 +4,13 @@ requires = [
     "wheel"
 ]
 build-backend = "setuptools.build_meta"
+
+[tool.flakehell]
+max_line_length = 88
+show_source = true
+exclude = [".git", ".venv", ".mypy_cache", ".pytest_cache", ".nox"]
+extended_default_ignore = [] # https://github.com/flakehell/flakehell/issues/10
+
+[tool.flakehell.plugins]
+pyflakes = ["+*"]
+pycodestyle = ["+*", "-E203"]
