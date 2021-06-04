@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.org/brutus/wtforms-html5.svg?branch=main)](https://travis-ci.org/brutus/wtforms-html5)
 [![Coverage Status](https://coveralls.io/repos/github/brutus/wtforms-html5/badge.svg?branch=main)](https://coveralls.io/github/brutus/wtforms-html5?branch=main)
-[![Code Health](https://landscape.io/github/brutus/wtforms-html5/main/landscape.svg?style=flat)](https://landscape.io/github/brutus/wtforms-html5/main)
 
 **WTForms HTML5** generates render keywords for HTML5 INPUT widgets used by the
 [WTForms][] library.
