@@ -3,6 +3,7 @@
 [![PyPI Status](https://img.shields.io/pypi/v/wtforms-html5.svg)](https://pypi.org/project/wtforms-html5/)
 [![Coverage Status](https://coveralls.io/repos/github/brutus/wtforms-html5/badge.svg?branch=main)](https://coveralls.io/github/brutus/wtforms-html5?branch=main)
 [![pre-commit.ci Status](https://results.pre-commit.ci/badge/github/brutus/wtforms-html5/main.svg)](https://results.pre-commit.ci/latest/github/brutus/wtforms-html5/main)
+[![Test Status](https://github.com/brutus/wtforms-html5/actions/workflows/test.yml/badge.svg)](https://github.com/brutus/wtforms-html5/actions/workflows/test.yml)
 
 **WTForms HTML5** generates render keywords for HTML5 INPUT widgets used by the
 [WTForms][] library.
