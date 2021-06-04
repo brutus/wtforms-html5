@@ -1,5 +1,6 @@
 # WTForms HTML5
 
+[![PyPI Status](https://img.shields.io/pypi/v/wtforms-html5.svg)](https://pypi.org/project/wtforms-html5/)
 [![Build Status](https://travis-ci.org/brutus/wtforms-html5.svg?branch=main)](https://travis-ci.org/brutus/wtforms-html5)
 [![Coverage Status](https://coveralls.io/repos/github/brutus/wtforms-html5/badge.svg?branch=main)](https://coveralls.io/github/brutus/wtforms-html5?branch=main)
 
