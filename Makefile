@@ -2,7 +2,7 @@
 	setup setup-venv setup-requirements setup-pre-commit \
 	upgrade freeze \
 	lint \
-	doctest unittest coverage tests \
+	doctest unittest coverage tests tests-recreate \
 	change clog \
 	release \
 	clean full-clean build publish
@@ -36,7 +36,7 @@ lint:
 
 
 doctests:
-	.venv/bin/python -m doctest wtforms_html5.py
+	.venv/bin/python -m xdoctest --quiet wtforms_html5
 
 unittests:
 	.venv/bin/python -m unittest discover
@@ -47,6 +47,9 @@ coverage:
 
 tests:
 	.venv/bin/tox
+
+tests-recreate:
+	.venv/bin/tox --recreate
 
 
 change: slug ?= $(shell tr -dc A-Za-z0-9 < /dev/urandom | head -c9)
