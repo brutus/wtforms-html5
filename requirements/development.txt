@@ -1,4 +1,4 @@
 build
 bumpversion
-reno
+reno==3.3.0
 twine
