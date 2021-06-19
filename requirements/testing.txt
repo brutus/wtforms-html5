@@ -1,3 +1,3 @@
 beautifulsoup4
 werkzeug
-xdoctest
+xdoctest==0.15.0
