@@ -1,4 +1,4 @@
 beautifulsoup4==4.9.3
 werkzeug<2;python_version<="3.5"
 werkzeug==2.0.1;python_version>"3.5"
-xdoctest
+xdoctest==0.15.5
