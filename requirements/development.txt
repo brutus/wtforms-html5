@@ -1,4 +1,4 @@
-build
-bumpversion
+build==0.5.0
+bumpversion==0.6.0
 reno
 twine
