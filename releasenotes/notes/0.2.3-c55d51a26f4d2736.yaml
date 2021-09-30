@@ -1,5 +1,5 @@
 ---
-summary: '2016-10-08'
+summary: "2016-10-08"
 updated:
   - 👷 Added some polish to the `makefile` and CI.
   - 📝 Improved the docs.
