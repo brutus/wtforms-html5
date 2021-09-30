@@ -10,7 +10,7 @@
 
 setup: setup-venv setup-requirements setup-pre-commit
 
-setup-venv: version ?= 3.9
+setup-venv: version ?= $(cat runtime.txt)
 setup-venv:
 	python$(version) -m venv .venv
 	.venv/bin/pip install --isolated --no-input --quiet --upgrade pip
