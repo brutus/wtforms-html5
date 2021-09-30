@@ -20,7 +20,7 @@ setup-requirements:
 	.venv/bin/pip install --isolated --no-input --quiet -r '$(req)'
 
 setup-pre-commit:
-	.venv/bin/pre-commit install --overwrite --install-hooks
+	.venv/bin/pre-commit install --install-hooks
 
 
 upgrade:
@@ -46,10 +46,10 @@ coverage:
 	.venv/bin/coverage report -m
 
 tests:
-	.venv/bin/tox
+	.venv/bin/tox $(args)
 
 tests-recreate:
-	.venv/bin/tox --recreate
+	.venv/bin/tox --recreate $(args)
 
 
 change: slug ?= $(shell tr -dc A-Za-z0-9 < /dev/urandom | head -c9)
