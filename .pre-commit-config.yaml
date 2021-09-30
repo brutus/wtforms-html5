@@ -26,11 +26,6 @@ repos:
     rev: v2.3.2
     hooks:
       - id: prettier
-        types:
-          - css
-          - html
-          - javascript
-          - markdown
   # YAML
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.26.1
