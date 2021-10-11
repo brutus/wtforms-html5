@@ -1,5 +1,5 @@
 beautifulsoup4==4.10.0
 flake8==4.0.1
 werkzeug==2.0.2;python_version<="3.5"
-werkzeug==2.0.1;python_version>"3.5"
+werkzeug==2.0.2;python_version>"3.5"
 xdoctest[all]==0.15.5
