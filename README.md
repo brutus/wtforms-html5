@@ -5,7 +5,7 @@
 [![pre-commit.ci Status](https://results.pre-commit.ci/badge/github/brutus/wtforms-html5/main.svg)](https://results.pre-commit.ci/latest/github/brutus/wtforms-html5/main)
 [![Test Status](https://github.com/brutus/wtforms-html5/actions/workflows/test.yml/badge.svg)](https://github.com/brutus/wtforms-html5/actions/workflows/test.yml)
 
-**VERSION**: `0.5.1`
+**VERSION**: `0.6.0`
 
 **WTForms HTML5** generates render keywords for HTML5 INPUT widgets used by the
 [WTForms][] library.
