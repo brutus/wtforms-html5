@@ -10,27 +10,23 @@ repos:
     hooks:
       # Generall Stuff
       - id: trailing-whitespace
+      - id: end-of-file-fixer
       - id: mixed-line-ending
         args:
           - "--fix=lf"
-      - id: end-of-file-fixer
       # VCS
       - id: check-merge-conflict
-      # Config / Data Files
+      # Config / Data Files (syntax check only)
       - id: check-yaml
+      - id: check-toml
       # Python
       - id: debug-statements
       - id: requirements-txt-fixer
-  # Prettier (HTML, JS, CSS, Markdown…)
+  # Prettier (HTML, JS, CSS, Markdown, YAML…)
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v2.5.1
     hooks:
       - id: prettier
-  # YAML
-  - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.26.3
-    hooks:
-      - id: yamllint
   # Python: check syntax
   - repo: https://github.com/life4/flakehell
     rev: v.0.8.0
