@@ -38,7 +38,7 @@ filename = "CHANGELOG.md"
 template = "changes/template.j2"
 start_string = "<!-- TOWNCRIER -->\n"
 underlines = ["", ""]
-title_format = "## {version} ({project_date})"
+title_format = "## {version} ({project_date})\n\n"
 issue_format = "[#{issue}](https://github.com/brutus/wtforms-html5/issues/{issue})"
 wrap = true
 

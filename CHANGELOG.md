@@ -12,23 +12,25 @@ You can find the **issue tracker** at:
 
 <!-- TOWNCRIER -->
 
-## v0.6.0 (2022-01-02)### Features
+## v0.6.0 (2022-01-02)
 
-- :white_check_mark: add support for Python `3.10`
+### Features
+
+-   :white_check_mark: add support for Python `3.10`
 
 ### Changes
 
-- :hammer: use [Towncrier](https://github.com/twisted/towncrier) for CHANGELOG
-  generation (and switch back to Markdown)
-- :rotating_light: use `flake8` instead of `flakehell` as Python linter
-- :package: use [pip-tools](https://github.com/jazzband/pip-tools) to generate
-  a constraints file for requirements
-- :sparkles: update Makefile: set `$PATH` for virtual environment, add `audit`
-  task and update tasks for testing and packaging
+-   :hammer: use [Towncrier](https://github.com/twisted/towncrier) for CHANGELOG
+    generation (and switch back to Markdown)
+-   :rotating_light: use `flake8` instead of `flakehell` as Python linter
+-   :package: use [pip-tools](https://github.com/jazzband/pip-tools) to generate
+    a constraints file for requirements
+-   :sparkles: update Makefile: set `$PATH` for virtual environment, add `audit`
+    task and update tasks for testing and packaging
 
 ### Deprecations and Removals
 
-- :coffin: remove the support for _end of life_ Python versions `2.7` and `3.6`
+-   :coffin: remove the support for _end of life_ Python versions `2.7` and `3.6`
 
 
 ## v0.5.1 (2021-09-30)
@@ -43,6 +45,7 @@ Add some polish to the CI.
 
 -   👷 switched CI from [Travis](https://travis-ci.org/) to Github actions
 -   ➕ switched to [xdoctest](https://xdoctest.readthedocs.io/) for _doctest_
+
 
 ## v0.5.0 (2021-06-02)
 
@@ -68,6 +71,7 @@ generated environments, with distributed package version).
 ### Removed
 
 -   📦 Ditched _Pipfile_ (and related tooling).
+
 
 ## v0.4.0 (2019-05-24)
 
@@ -107,6 +111,7 @@ All around update.
 
 -   👥 Added new contributor: [Gowee](https://github.com/Gowee) - Thanks!
 
+
 ## v0.3.0 (2016-12-16)
 
 Small code re-factoring.
@@ -124,11 +129,13 @@ Small code re-factoring.
 
 -   📝 Updated the docs.
 
+
 ## v0.2.4 (2016-11-10)
 
 ### Updates
 
 -   📝 Updated the docs.
+
 
 ## v0.2.3 (2016-10-08)
 
@@ -138,11 +145,13 @@ Small code re-factoring.
 
 -   📝 Improved the docs.
 
+
 ## v0.2.2 (2016-10-07)
 
 ### Fixes
 
 -   📝 Added `setup.py` to bumpversion configuration.
+
 
 ## v0.2.1 (2016-10-07)
 
@@ -172,6 +181,7 @@ Makefile and automation.
 
 -   🔥 Removed `run…` files and replaced them with a `makefile`.
 
+
 ## v0.2.0 (2016-10-06)
 
 Huge re-factoring. Dropping all fields, widgets and validators and include a new
@@ -199,17 +209,20 @@ meta class for forms instead. See [README.md](README.md) for more information.
 
 -   📦 Removed tests from the Python package.
 
+
 ## v0.1.2 (2012-11-12)
 
 ### Added Features
 
 -   ✅ Added test cases.
 
+
 ## v0.1.1 (2012-11-11)
 
 ### Fixes
 
 -   📝 Fixed some spelling errors in the documentation.
+
 
 ## v0.1.0 (2012-11-10)
 
