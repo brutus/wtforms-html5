@@ -12,6 +12,44 @@ You can find the **issue tracker** at:
 
 <!-- TOWNCRIER -->
 
+## v0.5.1 (2021-09-30)
+
+Add some polish to the CI.
+
+### Added Features
+
+-   📝 added badges for various CI checks and stuff to the README
+
+### Changes
+
+-   👷 switched CI from [Travis](https://travis-ci.org/) to Github actions
+-   ➕ switched to [xdoctest](https://xdoctest.readthedocs.io/) for _doctest_
+
+## v0.5.0 (2021-06-02)
+
+Moved to a `src/` layout. Also differentiate more between dev- and install
+dependencies. Local development is done via `Makefile` (and virtual
+environment, with package in _edit-able_ mode), CI testing via `tox` (and
+generated environments, with distributed package version).
+
+### Added Features
+
+-   🚨 Added _editorconfig_ configuration.
+-   🚨 Added _pre-commit_ configuration.
+
+### Changes
+
+-   🏗 Switched to a `src/` layout. Install package editable for dev setup.
+-   📦 Switched to a contemporary (declarative) build setup with `setup.cfg`
+    and `build`.
+-   📌 Only development requirements are kept in _requirement files_ (unpinned).
+    Package dependencies are kept in `setup.cfg` (loosely pinned as needed).
+-   🚨 Moved all linting to _pre-commit_ (and _Black_).
+
+### Removed
+
+-   📦 Ditched _Pipfile_ (and related tooling).
+
 ## v0.4.0 (2019-05-24)
 
 All around update.
