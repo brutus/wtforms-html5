@@ -1,7 +1,7 @@
 ---
 # INSTALL .: `pre-commit install --overwrite --install-hooks`
 # UPDATE ..: `pre-commit autoupdate`
-
+exclude: '^(CHANGELOG\.md)$'
 default_language_version:
   python: python3.9
 repos:
@@ -41,7 +41,6 @@ repos:
       - id: reorder-python-imports
         args:
           - "--application-directories=.:src:tests"
-          - "--separate-relative"
           - "--py26-plus"
   # Python: lint with black
   - repo: https://github.com/psf/black
