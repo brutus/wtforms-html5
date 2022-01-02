@@ -3,8 +3,4 @@ schedule: "every week"
 label_prs: dependencies
 search: no
 requirements:
-  - requirements/ci.txt
-  - requirements/coverage.txt
-  - requirements/development.txt
-  - requirements/lint.txt
-  - requirements/testing.txt
+  - requirements/constraints.txt

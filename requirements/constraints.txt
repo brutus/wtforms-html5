@@ -1,0 +1,68 @@
+beautifulsoup4==4.10.0    # via -r requirements/tests.in
+bleach==4.1.0             # via readme-renderer
+build==0.7.0              # via -r requirements/dev.in
+bump2version==1.0.1       # via -r requirements/dev.in
+certifi==2021.10.8        # via requests
+cffi==1.15.0              # via cryptography
+cfgv==3.3.1               # via pre-commit
+charset-normalizer==2.0.9  # via requests
+click==8.0.3              # via click-default-group, pip-tools, safety, towncrier
+click-default-group==1.2.2  # via towncrier
+colorama==0.4.4           # via twine
+coverage==6.2             # via -r requirements/tests.in
+cryptography==36.0.1      # via secretstorage
+distlib==0.3.4            # via virtualenv
+docutils==0.18.1          # via readme-renderer
+dparse==0.5.1             # via safety
+filelock==3.4.2           # via tox, virtualenv
+flake8==4.0.1             # via -r requirements/tests.in
+identify==2.4.1           # via pre-commit
+idna==3.3                 # via requests
+importlib-metadata==4.10.0  # via keyring, twine
+incremental==21.3.0       # via towncrier
+jeepney==0.7.1            # via keyring, secretstorage
+jinja2==3.0.3             # via towncrier
+keyring==23.5.0           # via twine
+markupsafe==2.0.1         # via jinja2, wtforms
+mccabe==0.6.1             # via flake8
+nodeenv==1.6.0            # via pre-commit
+packaging==21.3           # via bleach, build, dparse, safety, tox
+pep517==0.12.0            # via build, pip-tools
+pip-tools==6.4.0          # via -r requirements/dev.in
+pkginfo==1.8.2            # via twine
+platformdirs==2.4.1       # via virtualenv
+pluggy==1.0.0             # via tox
+pre-commit==2.16.0        # via -r requirements/ci.in
+py==1.11.0                # via tox
+pycodestyle==2.8.0        # via flake8
+pycparser==2.21           # via cffi
+pyflakes==2.4.0           # via flake8
+pygments==2.11.1          # via readme-renderer, xdoctest
+pyparsing==3.0.6          # via packaging
+pyyaml==6.0               # via dparse, pre-commit
+readme-renderer==32.0     # via twine
+requests==2.26.0          # via requests-toolbelt, safety, twine
+requests-toolbelt==0.9.1  # via twine
+rfc3986==1.5.0            # via twine
+safety==1.10.3            # via -r requirements/dev.in
+secretstorage==3.3.1      # via keyring
+six==1.16.0               # via bleach, tox, virtualenv, xdoctest
+soupsieve==2.3.1          # via beautifulsoup4
+toml==0.10.2              # via dparse, pre-commit, towncrier, tox
+tomli==2.0.0              # via build, coverage, pep517
+towncrier==21.3.0         # via -r requirements/dev.in
+tox==3.24.5               # via -r requirements/ci.in
+tqdm==4.62.3              # via twine
+twine==3.7.1              # via -r requirements/dev.in
+urllib3==1.26.7           # via requests
+virtualenv==20.13.0       # via pre-commit, tox
+webencodings==0.5.1       # via bleach
+werkzeug==2.0.2           # via -r requirements/tests.in
+wheel==0.37.1             # via pip-tools
+wtforms==3.0.1            # via wtforms-html5 (setup.cfg)
+xdoctest==0.15.10         # via -r requirements/tests.in
+zipp==3.7.0               # via importlib-metadata
+
+# The following packages are considered to be unsafe in a requirements file:
+# pip
+# setuptools

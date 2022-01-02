@@ -1,6 +1,5 @@
+-c requirements/constraints.txt
 -e .
--r requirements/development.txt
--r requirements/lint.txt
--r requirements/testing.txt
--r requirements/coverage.txt
--r requirements/ci.txt
+-r requirements/ci.in
+-r requirements/dev.in
+-r requirements/tests.in

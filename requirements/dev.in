@@ -1,0 +1,6 @@
+build
+bump2version
+pip-tools
+safety
+towncrier
+twine

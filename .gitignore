@@ -1,10 +1,8 @@
-*.egg-info/
 *.pyc
+*.egg-info/
 .tox/
 .coverage
-MANIFEST
 dist/
 build/
-misc/
-venv/
+.venv/
 .vscode/
