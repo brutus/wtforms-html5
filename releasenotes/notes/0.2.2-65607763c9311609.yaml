@@ -1,4 +1,0 @@
----
-summary: "2016-10-07"
-fixed:
-  - 📝 Added ``setup.py`` to bumpversion configuration.
