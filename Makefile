@@ -1,55 +1,75 @@
 .PHONY: \
 	setup setup-venv setup-requirements setup-pre-commit \
-	upgrade freeze \
-	lint \
-	doctest unittest coverage tests tests-recreate \
+	clean full-clean upgrade \
+	lint audit \
+	all-tests unittests doctests coverage \
 	change clog \
-	release \
-	clean full-clean build publish
+	release build publish
 
+
+PYTHON_VERSION := $(shell cat runtime.txt)
+
+RELEASE_LEVELS := patch minor major
+
+
+# SETUP
 
 setup: setup-venv setup-requirements setup-pre-commit
 
 setup-venv: version ?= $(cat runtime.txt)
 setup-venv:
-	python$(version) -m venv .venv
-	.venv/bin/pip install --isolated --no-input --quiet --upgrade pip
+	python$(PYTHON_VERSION) -m venv --clear --upgrade-deps .venv
+
+export PATH := $(shell pwd)/.venv/bin:$(PATH)
 
 setup-requirements: req ?= requirements.txt
 setup-requirements:
-	.venv/bin/pip install --isolated --no-input --quiet -r '$(req)'
+	pip install --isolated --no-input --quiet -r '$(req)'
 
 setup-pre-commit:
-	.venv/bin/pre-commit install --install-hooks
+	pre-commit install --install-hooks
 
+clean:
+	rm -rf MANIFEST build dist
+
+full-clean: clean
+	rm -rf .venv .tox .nox .pytest_cache .mypy_cache .coverage*
 
 upgrade:
-	.venv/bin/pip install --upgrade \
-	$(shell .venv/bin/pip list --outdated | awk 'NR>2 {print $$1}')
+	pip-compile \
+		--upgrade \
+		--no-header \
+		--strip-extras \
+		--annotation-style line \
+		--output-file requirements/constraints.txt \
+		setup.cfg \
+		requirements/*.in
 
-freeze:
-	.venv/bin/pip freeze > requirements.prod.txt
 
+# LINTING
 
 lint:
-	.venv/bin/pre-commit run --all-files
+	pre-commit run --all-files
 
+audit:
+	safety check --file requirements/constraints.txt
+
+
+# TESTS
+
+all-tests:
+	tox $(args)
 
 doctests:
-	.venv/bin/python -m xdoctest --quiet wtforms_html5
+	xdoctest --quiet wtforms_html5
 
 unittests:
-	.venv/bin/python -m unittest discover
+	python -m unittest discover
 
 coverage:
-	.venv/bin/coverage run --append --source wtforms_html5 -m unittest discover
-	.venv/bin/coverage report -m
-
-tests:
-	.venv/bin/tox $(args)
-
-tests-recreate:
-	.venv/bin/tox --recreate $(args)
+	coverage erase
+	coverage run -m unittest discover $(args)
+	coverage report
 
 
 # CHANGELOG
@@ -65,40 +85,32 @@ clog:
 	towncrier --draft --version=Unreleased
 
 
-release: part ?= patch
+# PACKAGING
+
 release:
+ifneq ($(filter $(part),$(RELEASE_LEVELS)),)
 	$(eval version = $(shell \
-		.venv/bin/bumpversion --dry-run --allow-dirty --list $(part) \
+		bumpversion --dry-run --allow-dirty --list $(part) \
 		| grep '^current_version=' \
 		| cut -d= -f2 \
 	))
 	$(eval new = $(shell \
-		.venv/bin/bumpversion --dry-run --allow-dirty --list $(part) \
+		bumpversion --dry-run --allow-dirty --list $(part) \
 		| grep '^new_version=' \
 		| cut -d= -f2 \
 	))
-	@echo "bump $(part) -> $(version) => $(new)"
-	@git tag '$(new)'
-	.venv/bin/reno report --no-show-source --title=CHANGELOG --output=CHANGELOG.rst 2>/dev/null
-	@git tag -d '$(new)'
-	git add CHANGELOG.rst
+	@echo "bump $(part) -> $(version) => $(new)"towncrier --yes --version '$(new)'
 	if ! git diff --staged --exit-code; then \
-		git commit -m ':memo: update CHANGELOG for $(new)' --no-verify; \
+		git commit -m ':memo: add CHANGELOG for $(new)' --no-verify; \
 	fi
-	.venv/bin/bumpversion '$(part)' --commit-args='--no-verify'
-
-
-clean:
-	rm -rf build dist
-
-full-clean: clean
-	rm -rf .venv .tox
-
+	bumpversion '$(part)' --commit-args='--no-verify'
+else
+	@echo "Given part '$(part)' is not a suported value: $(RELEASE_LEVELS)"
+endif
 
 build: clean
-	.venv/bin/python -m build
-
+	python -m build
 
 publish: build
-	.venv/bin/python -m twine check dist/*
-	.venv/bin/python -m twine upload dist/*
+	python -m twine check dist/*
+	python -m twine upload dist/*

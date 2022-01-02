@@ -123,7 +123,7 @@ above, it should have been taken care of.
 
 **WTForms HTML5** is at home at: https://github.com/brutus/wtforms-html5/
 
-You can run `make setup` after checkout, to setup a dev environment.
+You can run `make setup` after checkout, to setup a development environment.
 
 If you find any bugs, issues or anything, please use the [issue tracker][].
 
@@ -131,12 +131,12 @@ If you find any bugs, issues or anything, please use the [issue tracker][].
 
 You can run the provided **doctest** like this: `make doctest`. If you want to
 run the **test cases**, run `make unittest` (or `make coverage`). You can also
-run `make tests` to run this for all supported versions (this might take some
+run `make all-tests` to run this for all supported versions (this might take
+some time though).
 
 If something fails, please get in touch.
 
 [home]: https://github.com/brutus/wtforms-html5/
-[sourceball]: https://github.com/brutus/wtforms-html5/zipball/master
 [issue tracker]: https://github.com/brutus/wtforms-html5/issues
 [wtforms]: https://wtforms.readthedocs.io/
 [pip]: https://pip.pypa.io/
