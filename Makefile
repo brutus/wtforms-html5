@@ -99,7 +99,8 @@ ifneq ($(filter $(part),$(RELEASE_LEVELS)),)
 		| grep '^new_version=' \
 		| cut -d= -f2 \
 	))
-	@echo "bump $(part) -> $(version) => $(new)"towncrier --yes --version '$(new)'
+	@echo "bump $(part) -> $(version) => $(new)"
+	towncrier --yes --version '$(new)'
 	if ! git diff --staged --exit-code; then \
 		git commit -m ':memo: add CHANGELOG for $(new)' --no-verify; \
 	fi
