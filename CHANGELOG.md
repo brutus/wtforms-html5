@@ -12,6 +12,25 @@ You can find the **issue tracker** at:
 
 <!-- TOWNCRIER -->
 
+## v0.6.0 (2022-01-02)### Features
+
+- :white_check_mark: add support for Python `3.10`
+
+### Changes
+
+- :hammer: use [Towncrier](https://github.com/twisted/towncrier) for CHANGELOG
+  generation (and switch back to Markdown)
+- :rotating_light: use `flake8` instead of `flakehell` as Python linter
+- :package: use [pip-tools](https://github.com/jazzband/pip-tools) to generate
+  a constraints file for requirements
+- :sparkles: update Makefile: set `$PATH` for virtual environment, add `audit`
+  task and update tasks for testing and packaging
+
+### Deprecations and Removals
+
+- :coffin: remove the support for _end of life_ Python versions `2.7` and `3.6`
+
+
 ## v0.5.1 (2021-09-30)
 
 Add some polish to the CI.
