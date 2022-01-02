@@ -18,7 +18,8 @@ filelock==3.4.2           # via tox, virtualenv
 flake8==4.0.1             # via -r requirements/tests.in
 identify==2.4.1           # via pre-commit
 idna==3.3                 # via requests
-importlib-metadata==4.10.0  # via keyring, twine
+importlib-metadata<4.3;python_version<'3.8'  # via keyring, twine
+importlib-metadata==4.10.0;python_version>='3.8'  # via keyring, twine
 incremental==21.3.0       # via towncrier
 jeepney==0.7.1            # via keyring, secretstorage
 jinja2==3.0.3             # via towncrier
