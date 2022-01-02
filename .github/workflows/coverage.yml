@@ -19,14 +19,14 @@ jobs:
       - name: Install dependencies
         run: >-
           pip install
-          -r requirements/testing.txt
-          -r requirements/coverage.txt
+          -c requirements/constraints.txt
+          -r requirements/tests.in
           coveralls
           .
       - name: Get coverage
-        run: coverage run --source wtforms_html5 -m unittest discover
+        run: coverage run -m unittest discover
       - name: Show report
-        run: coverage report -m
+        run: coverage report
       - name: send report to coveralls
         run: coveralls
         env:

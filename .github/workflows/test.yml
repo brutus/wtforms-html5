@@ -26,7 +26,8 @@ jobs:
       - name: Install dependencies
         run: >-
           pip install
-          -r requirements/ci.txt
+          -c requirements/constraints.txt
+          -r requirements/ci.in
           tox-gh-actions
       - name: Run tox
         run: tox
