@@ -15,6 +15,23 @@ extended_default_ignore = [] # https://github.com/flakehell/flakehell/issues/10
 pyflakes = ["+*"]
 pycodestyle = ["+*", "-E203"]
 
+[tool.coverage.run]
+branch = true
+disable_warnings = [
+	"module-not-measured",
+	"no-data-collected",
+]
+source_pkgs = [
+	"wtforms_html5",
+]
+
+[tool.coverage.report]
+fail_under = 80
+precision = 2
+skip_covered = true
+skip_empty = true
+show_missing = true
+
 [tool.towncrier]
 directory = "changes"
 filename = "CHANGELOG.md"
