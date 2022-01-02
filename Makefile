@@ -52,13 +52,17 @@ tests-recreate:
 	.venv/bin/tox --recreate $(args)
 
 
-change: slug ?= $(shell tr -dc A-Za-z0-9 < /dev/urandom | head -c9)
-change:
-	.venv/bin/reno new $(slug)
+# CHANGELOG
 
-clog: version ?= $(shell git describe | awk -F'-g' '{print $$1}')
+change: issue ?= _$(shell < /dev/urandom tr -dc A-Za-z0-9 | head -c9)
+change: type ?= feature
+change: change_file := changes/$(issue).$(type).md
+change:
+	touch '$(change_file)'
+	$(EDITOR) '$(change_file)'
+
 clog:
-	.venv/bin/reno report --title='CHANGELOG' --version '$(version)' 2>/dev/null
+	towncrier --draft --version=Unreleased
 
 
 release: part ?= patch

@@ -14,3 +14,38 @@ extended_default_ignore = [] # https://github.com/flakehell/flakehell/issues/10
 [tool.flakehell.plugins]
 pyflakes = ["+*"]
 pycodestyle = ["+*", "-E203"]
+
+[tool.towncrier]
+directory = "changes"
+filename = "CHANGELOG.md"
+template = "changes/template.j2"
+start_string = "<!-- TOWNCRIER -->\n"
+underlines = ["", ""]
+title_format = "## {version} ({project_date})"
+issue_format = "[#{issue}](https://github.com/brutus/wtforms-html5/issues/{issue})"
+wrap = true
+
+[[tool.towncrier.type]]
+directory = "feature"
+name = "Features"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "change"
+name = "Changes"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "removal"
+name = "Deprecations and Removals"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "fix"
+name = "Bugfixes"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "misc"
+name = "Misc"
+showcontent = false
