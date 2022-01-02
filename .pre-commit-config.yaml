@@ -28,10 +28,12 @@ repos:
     hooks:
       - id: prettier
   # Python: check syntax
-  - repo: https://github.com/life4/flakehell
-    rev: v.0.8.0
+  - repo: https://github.com/pycqa/flake8
+    rev: 4.0.1
     hooks:
-      - id: flakehell
+      - id: flake8
+        args:
+          - "--select=F"
   # Python: reorder imports
   - repo: https://github.com/asottile/reorder_python_imports
     rev: v2.6.0
