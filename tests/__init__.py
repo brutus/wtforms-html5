@@ -1,7 +1,4 @@
 # pylama:ignore=C0111
-from __future__ import absolute_import
-from __future__ import unicode_literals
-
 import sys
 from functools import wraps
 from unittest import SkipTest

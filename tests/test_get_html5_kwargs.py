@@ -3,10 +3,6 @@
 Tests for the :func:`wtforms_html5.get_html5_kwargs` function.
 
 """
-from __future__ import absolute_import
-from __future__ import print_function
-from __future__ import unicode_literals
-
 from unittest import TestCase
 
 from wtforms import StringField
@@ -14,12 +10,11 @@ from wtforms.validators import DataRequired
 from wtforms.validators import InputRequired
 from wtforms.validators import Length
 
+from . import get_form
+from . import SkipIfNoSubtests
 from wtforms_html5 import get_html5_kwargs
 from wtforms_html5 import MINMAX_VALIDATORS
 from wtforms_html5 import MINMAXLENGTH_VALIDATORS
-
-from . import get_form
-from . import SkipIfNoSubtests
 
 
 class TestGetHtml5Kwargs(TestCase):

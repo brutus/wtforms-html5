@@ -41,7 +41,7 @@ repos:
       - id: reorder-python-imports
         args:
           - "--application-directories=.:src:tests"
-          - "--py26-plus"
+          - "--py37-plus"
   # Python: lint with black
   - repo: https://github.com/psf/black
     rev: 21.12b0
@@ -49,4 +49,4 @@ repos:
       - id: black
         args:
           - "--line-length=88"
-          - "--target-version=py27"
+          - "--target-version=py37"

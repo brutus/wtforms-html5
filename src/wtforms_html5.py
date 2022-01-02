@@ -95,9 +95,6 @@ False
 .. _WTForms: https://wtforms.readthedocs.io/
 
 """
-from __future__ import absolute_import
-from __future__ import unicode_literals
-
 from wtforms.fields.core import UnboundField
 from wtforms.meta import DefaultMeta
 from wtforms.validators import Length
