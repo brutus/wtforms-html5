@@ -90,12 +90,12 @@ clog:
 release:
 ifneq ($(filter $(part),$(RELEASE_LEVELS)),)
 	$(eval version = $(shell \
-		bumpversion --dry-run --allow-dirty --list $(part) \
+		.venv/bin/bumpversion --dry-run --allow-dirty --list $(part) \
 		| grep '^current_version=' \
 		| cut -d= -f2 \
 	))
 	$(eval new = $(shell \
-		bumpversion --dry-run --allow-dirty --list $(part) \
+		.venv/bin/bumpversion --dry-run --allow-dirty --list $(part) \
 		| grep '^new_version=' \
 		| cut -d= -f2 \
 	))
