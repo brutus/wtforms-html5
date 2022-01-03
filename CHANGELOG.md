@@ -12,6 +12,13 @@ You can find the **issue tracker** at:
 
 <!-- TOWNCRIER -->
 
+## 0.6.1 (2022-01-03)
+
+### Bugfixes
+
+- :hammer: fix tasks and template for CHANGELOG
+
+
 ## v0.6.0 (2022-01-02)
 
 ### Features
