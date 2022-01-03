@@ -100,7 +100,7 @@ from wtforms.meta import DefaultMeta
 from wtforms.validators import Length
 from wtforms.validators import NumberRange
 
-__version__ = "0.6.0"
+__version__ = "0.6.1"
 __author__ = "Brutus [DMC] <brutus.dmc@googlemail.com>"
 __license__ = (
     "GNU General Public License v3 or above - "
