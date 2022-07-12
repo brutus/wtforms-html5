@@ -36,7 +36,7 @@ repos:
           - "--select=F"
   # Python: reorder imports
   - repo: https://github.com/asottile/reorder_python_imports
-    rev: v3.1.0
+    rev: v3.8.1
     hooks:
       - id: reorder-python-imports
         args:
@@ -44,7 +44,7 @@ repos:
           - "--py37-plus"
   # Python: lint with black
   - repo: https://github.com/psf/black
-    rev: 22.3.0
+    rev: 22.6.0
     hooks:
       - id: black
         args:
