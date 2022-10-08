@@ -13,7 +13,7 @@ coverage==6.2             # via -r requirements/tests.in
 cryptography==36.0.1      # via secretstorage
 distlib==0.3.4            # via virtualenv
 docutils==0.18.1          # via readme-renderer
-dparse==0.5.1             # via safety
+dparse==0.5.2             # via safety
 filelock==3.4.2           # via tox, virtualenv
 flake8==4.0.1             # via -r requirements/tests.in
 identify==2.4.1           # via pre-commit
