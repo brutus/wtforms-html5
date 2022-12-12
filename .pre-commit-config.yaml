@@ -44,7 +44,7 @@ repos:
           - "--py37-plus"
   # Python: lint with black
   - repo: https://github.com/psf/black
-    rev: 22.10.0
+    rev: 22.12.0
     hooks:
       - id: black
         args:
