@@ -59,7 +59,7 @@ urllib3==1.26.7           # via requests
 virtualenv==20.13.0       # via pre-commit, tox
 webencodings==0.5.1       # via bleach
 werkzeug==2.0.2           # via -r requirements/tests.in
-wheel==0.37.1             # via pip-tools
+wheel==0.38.1             # via pip-tools
 wtforms==3.0.1            # via wtforms-html5 (setup.cfg)
 xdoctest==0.15.10         # via -r requirements/tests.in
 zipp==3.7.0               # via importlib-metadata
