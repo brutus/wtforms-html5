@@ -18,7 +18,6 @@ from wtforms_html5 import MINMAXLENGTH_VALIDATORS
 
 
 class TestGetHtml5Kwargs(TestCase):
-
     # BASICS
 
     def test_unbound_field(self):
