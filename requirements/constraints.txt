@@ -38,7 +38,7 @@ py==1.11.0                # via tox
 pycodestyle==2.8.0        # via flake8
 pycparser==2.21           # via cffi
 pyflakes==2.4.0           # via flake8
-pygments==2.11.1          # via readme-renderer, xdoctest
+pygments==2.15.0          # via readme-renderer, xdoctest
 pyparsing==3.0.6          # via packaging
 pyyaml==6.0               # via dparse, pre-commit
 readme-renderer==32.0     # via twine
