@@ -55,7 +55,7 @@ towncrier==21.3.0         # via -r requirements/dev.in
 tox==3.24.5               # via -r requirements/ci.in
 tqdm==4.62.3              # via twine
 twine==3.7.1              # via -r requirements/dev.in
-urllib3==1.26.17           # via requests
+urllib3==1.26.18           # via requests
 virtualenv==20.13.0       # via pre-commit, tox
 webencodings==0.5.1       # via bleach
 werkzeug==2.0.2           # via -r requirements/tests.in
