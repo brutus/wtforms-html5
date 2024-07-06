@@ -2,7 +2,7 @@ beautifulsoup4==4.10.0    # via -r requirements/tests.in
 bleach==4.1.0             # via readme-renderer
 build==0.7.0              # via -r requirements/dev.in
 bump2version==1.0.1       # via -r requirements/dev.in
-certifi==2023.7.22        # via requests
+certifi==2024.7.4        # via requests
 cffi==1.15.0              # via cryptography
 cfgv==3.3.1               # via pre-commit
 charset-normalizer==2.0.9  # via requests
