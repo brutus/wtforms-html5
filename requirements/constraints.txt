@@ -62,7 +62,7 @@ werkzeug==2.0.2           # via -r requirements/tests.in
 wheel==0.38.1             # via pip-tools
 wtforms==3.0.1            # via wtforms-html5 (setup.cfg)
 xdoctest==0.15.10         # via -r requirements/tests.in
-zipp==3.7.0               # via importlib-metadata
+zipp==3.19.1               # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
