@@ -32,28 +32,28 @@ your form, just like in the original version of **WTForms HTML5**.
 
 ## Supported Auto–Attributes
 
--   **required**
+- **required**
 
     Is set if the field has the _required_ flag set. This happens i.e. if you use
     the _DataRequired_ or _InputRequired_ validator. The `required` attribute is
     used by browsers to indicate a required field (and most browsers won't
     activate the forms action unless all required fields have content).
 
--   **invalid**
+- **invalid**
 
     If the field got any validation errors, the CSS class _invalid_ is added. The
     `invalid` class is also set by browsers, if they detect errors on a field.
     The validation errors detected by your code, are then by default styled in
     the same way as browser generated errors.
 
--   **min** / **max** and **minlength** / **maxlength**
+- **min** / **max** and **minlength** / **maxlength**
 
     If either _Length_ or _NumberRange_ is used as a validator to set minimal
     and / or maximal values, the corresponding INPUT attribute is
     set (based on which validator is used). This allows for browser based
     validation of the values.
 
--   **title**
+- **title**
 
     If no _title_ is provided for a field, the _description_ (if one is set) is
     used for the `title` attribute.
