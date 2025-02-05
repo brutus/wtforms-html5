@@ -8,52 +8,52 @@
 **VERSION**: `0.6.1`
 
 **WTForms HTML5** generates render keywords for HTML5 INPUT widgets used by the
-[WTForms][] library.
+[WTForms] library.
 
 ## Evolution
 
 _Original Function_: This module used to add support for the new HTML5 INPUT
-elements to [WTForms][]. Besides supporting the new INPUT _types_, it also set
+elements to [WTForms]. Besides supporting the new INPUT _types_, it also set
 some of the new _attributes_ automatically, based on widget type and what kind
 of validators where set for the field.
 
-_Changes_: [WTForms][] — beginning around version 1.0.4 — started to implement
+_Changes_: [WTForms] — beginning around version 1.0.4 — started to implement
 some of these features. As of late 2016 the development version — that
 should become version 3 — has enough support for them IMO, so that to prevent
 the duplication of functionality, **WTForms HTML5** dropped all the fields,
-widgets and validators — just use vanilla [WTForms][].
+widgets and validators — just use vanilla [WTForms].
 
 _Current Function_: starting with `0.2` versions of **WTForms HTML5** merely
 contain one function: `get_html5_kwargs` — it adds the automatically generated
-keys to the _render keywords_ of a [WTForms][] field. A slim subclass of the new
+keys to the _render keywords_ of a [WTForms] field. A slim subclass of the new
 default _Meta_ class for forms is also provided: `AutoAttrMeta`. If you use this
 class as your forms _Meta_, you get the automatic attributes for all fields in
 your form, just like in the original version of **WTForms HTML5**.
 
 ## Supported Auto–Attributes
 
--   **required**
+- **required**
 
     Is set if the field has the _required_ flag set. This happens i.e. if you use
     the _DataRequired_ or _InputRequired_ validator. The `required` attribute is
     used by browsers to indicate a required field (and most browsers won't
     activate the forms action unless all required fields have content).
 
--   **invalid**
+- **invalid**
 
     If the field got any validation errors, the CSS class _invalid_ is added. The
     `invalid` class is also set by browsers, if they detect errors on a field.
     The validation errors detected by your code, are then by default styled in
     the same way as browser generated errors.
 
--   **min** / **max** and **minlength** / **maxlength**
+- **min** / **max** and **minlength** / **maxlength**
 
     If either _Length_ or _NumberRange_ is used as a validator to set minimal
     and / or maximal values, the corresponding INPUT attribute is
     set (based on which validator is used). This allows for browser based
     validation of the values.
 
--   **title**
+- **title**
 
     If no _title_ is provided for a field, the _description_ (if one is set) is
     used for the `title` attribute.
@@ -108,8 +108,8 @@ False
 
 You can install **WTForms HTML5** with _pip_ or from _source_.
 
-[pip][] is _"a tool for installing and managing Python packages"_. If you don't
-have it installed, see the [pip install instructions][].
+[pip] is _"a tool for installing and managing Python packages"_. If you don't
+have it installed, see the [pip install instructions].
 
 ```shell
 pip install --user wtforms-html5
@@ -117,7 +117,7 @@ pip install --user wtforms-html5
 
 ### Install Requirements
 
-Since **WTForms HTML5** only adds functionality to [WTForms][], you need to
+Since **WTForms HTML5** only adds functionality to [WTForms], you need to
 have it installed too. But if you use the installation method described
 above, it should have been taken care of.
 
@@ -127,19 +127,18 @@ above, it should have been taken care of.
 
 You can run `make setup` after checkout, to setup a development environment.
 
-If you find any bugs, issues or anything, please use the [issue tracker][].
+If you find any bugs, issues or anything, please use the [issue tracker].
 
 ### Testing
 
 You can run the provided **doctest** like this: `make doctest`. If you want to
-run the **test cases**, run `make unittest` (or `make coverage`). You can also
-run `make all-tests` to run this for all supported versions (this might take
+run the **test cases**, run `make test` (or `make coverage`). You can also run
+`make tests-versions` to run this for all supported versions (this might take
 some time though).
 
 If something fails, please get in touch.
 
-[home]: https://github.com/brutus/wtforms-html5/
 [issue tracker]: https://github.com/brutus/wtforms-html5/issues
-[wtforms]: https://wtforms.readthedocs.io/
 [pip]: https://pip.pypa.io/
 [pip install instructions]: https://pip.pypa.io/en/stable/installing/
+[wtforms]: https://wtforms.readthedocs.io/

@@ -1,5 +1,0 @@
--c requirements/constraints.txt
--e .
--r requirements/ci.in
--r requirements/dev.in
--r requirements/tests.in

@@ -10,7 +10,7 @@ You can find the **issue tracker** at:
 [keep a changelog]: https://keepachangelog.com/
 [semantic versioning]: https://semver.org/
 
-<!-- TOWNCRIER -->
+<!-- towncrier release notes start -->
 
 ## 0.6.1 (2022-01-03)
 

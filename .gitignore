@@ -1,8 +1,10 @@
-*.pyc
-*.egg-info/
-.tox/
-.coverage
-dist/
 build/
+.copier/
+.coverage*
+dist/
+*.egg-info/
+*.pyc
+.pytest_cache/
+.tox/
 .venv/
 .vscode/

@@ -3,6 +3,7 @@
 Tests for the :cls:`wtforms_html5.AutoAttrMeta` class.
 
 """
+
 from unittest import TestCase
 
 from wtforms.validators import InputRequired

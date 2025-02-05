@@ -1,4 +1,3 @@
-# -*- coding: UTF-8 -*-
 """
 Generates render keywords for `WTForms`_ HTML5 field's widgets.
 
@@ -95,6 +94,7 @@ False
 .. _WTForms: https://wtforms.readthedocs.io/
 
 """
+
 from wtforms.fields.core import UnboundField
 from wtforms.meta import DefaultMeta
 from wtforms.validators import Length
@@ -149,7 +149,7 @@ def set_invalid(field, render_kw=None):
     if field.errors:
         classes = render_kw.get("class") or render_kw.pop("class_", "")
         if classes:
-            render_kw["class"] = "invalid {}".format(classes)
+            render_kw["class"] = f"invalid {classes}"
         else:
             render_kw["class"] = "invalid"
     return render_kw
@@ -225,8 +225,8 @@ def set_title(field, render_kw=None):
     """
     if render_kw is None:
         render_kw = {}
-    if "title" not in render_kw and getattr(field, "description"):
-        render_kw["title"] = "{}".format(field.description)
+    if "title" not in render_kw and field.description:
+        render_kw["title"] = f"{field.description}"
     return render_kw
 
 
@@ -269,8 +269,8 @@ def get_html5_kwargs(field, render_kw=None, force=False):
 
     """
     if isinstance(field, UnboundField):
-        msg = "This function needs a bound field not: {}"
-        raise ValueError(msg.format(field))
+        msg = f"This function needs a bound field, not: '{field}'"
+        raise ValueError(msg)
     kwargs = render_kw.copy() if render_kw else {}
     kwargs = set_required(field, kwargs, force)
     kwargs = set_invalid(field, kwargs)

@@ -1,117 +1,94 @@
 .PHONY: \
-	setup setup-venv setup-requirements setup-pre-commit \
-	clean full-clean upgrade \
-	lint audit \
-	all-tests unittests doctests coverage \
+	clean full-clean \
+	lint check fmt \
+	tests doctests coverage \
+	build publish \
 	change clog \
-	release build publish
-
-
-PYTHON_VERSION := $(shell cat runtime.txt)
-
-RELEASE_LEVELS := patch minor major
-
-
-# SETUP
-
-setup: setup-venv setup-requirements setup-pre-commit
-
-setup-venv: version ?= $(cat runtime.txt)
-setup-venv:
-	python$(PYTHON_VERSION) -m venv --clear --upgrade-deps .venv
-
-export PATH := $(shell pwd)/.venv/bin:$(PATH)
-
-setup-requirements: req ?= requirements.txt
-setup-requirements:
-	pip install --isolated --no-input --quiet -r '$(req)'
-
-setup-pre-commit:
-	pre-commit install --install-hooks
+	release
 
 clean:
 	rm -rf MANIFEST build dist
 
 full-clean: clean
-	rm -rf .venv .tox .nox .pytest_cache .mypy_cache .coverage*
-
-upgrade:
-	pip-compile \
-		--upgrade \
-		--no-header \
-		--strip-extras \
-		--annotation-style line \
-		--output-file requirements/constraints.txt \
-		setup.cfg \
-		requirements/*.in
-
+	rm -rf .venv .tox .nox .pytest_cache .mypy_cache .ruff_cache .coverage*
 
 # LINTING
 
 lint:
-	pre-commit run --all-files
+	hatch run lint:pc
 
-audit:
-	safety check --file requirements/constraints.txt
+check:
+	hatch run lint:check
 
+fix:
+	hatch run lint:fix
+	hatch run lint:upgrade
 
 # TESTS
 
-all-tests:
-	tox $(args)
-
-doctests:
-	xdoctest --quiet wtforms_html5
-
-unittests:
-	python -m unittest discover
+test:
+	hatch test
 
 coverage:
-	coverage erase
-	coverage run -m unittest discover $(args)
-	coverage report
+	hatch test --cover
 
+version-test:
+	hatch test --all --cover
 
-# CHANGELOG
-
-change: issue ?= _$(shell < /dev/urandom tr -dc A-Za-z0-9 | head -c9)
-change: type ?= feature
-change: change_file := changes/$(issue).$(type).md
-change:
-	touch '$(change_file)'
-	$(EDITOR) '$(change_file)'
-
-clog:
-	towncrier --draft --version=Unreleased
-
+doctest:
+	hatch test -- --xdoctest src/
 
 # PACKAGING
 
+build: clean
+	hatch build --clean --target wheel
+
+publish: build
+	hatch publish
+
+# CHANGELOG
+
+CHANGE_TYPES := rm fix feat change
+
+change: issue ?= _$(shell < /dev/urandom tr -dc A-Za-z0-9 | head -c9)
+change: change_file := changes/$(issue).$(type).md
+change:
+ifneq ($(filter $(type),$(CHANGE_TYPES)),)
+	touch '$(change_file)'
+	$(EDITOR) '$(change_file)'
+else
+	@echo "Given change type '$(type)' is not a suported value: $(CHANGE_TYPES)"
+endif
+
+clog:
+	hatch run project:towncrier build --draft --version Unreleased
+
+
+# RELEASE
+
+RELEASE_LEVELS := patch minor major
+
 release:
 ifneq ($(filter $(part),$(RELEASE_LEVELS)),)
-	$(eval version = $(shell \
-		.venv/bin/bumpversion --dry-run --allow-dirty --list $(part) \
-		| grep '^current_version=' \
-		| cut -d= -f2 \
-	))
-	$(eval new = $(shell \
-		.venv/bin/bumpversion --dry-run --allow-dirty --list $(part) \
-		| grep '^new_version=' \
-		| cut -d= -f2 \
-	))
-	@echo "bump $(part) -> $(version) => $(new)"
-	towncrier --yes --version '$(new)'
-	if ! git diff --staged --exit-code; then \
-		git commit -m ':memo: add CHANGELOG for $(new)' --no-verify; \
+	# check git status
+	@if ! git diff-index --quiet HEAD; then \
+		echo "ERROR: git unclean!"; \
+		exit 1; \
 	fi
-	bumpversion '$(part)' --commit-args='--no-verify'
+	# get next version (for changelog)
+	$(eval new_version := $(shell \
+	  hatch run project:bumpver update --dry --$(part) 2>&1 \
+	  | grep 'New Version:' \
+	  | awk '{print $$NF}' \
+	))
+	@echo "bump -> '$(new_version)'"
+	# write changelog
+	hatch run project:towncrier build --yes --version '$(new_version)'
+	if ! git diff --staged --exit-code; then \
+		git commit -m 'chore: add CHANGELOG for `$(new_version)`' --no-verify; \
+	fi
+	# bump version
+	hatch run project:bumpver update '--$(part)'
 else
 	@echo "Given part '$(part)' is not a suported value: $(RELEASE_LEVELS)"
 endif
-
-build: clean
-	python -m build
-
-publish: build
-	python -m twine check dist/*
-	python -m twine upload dist/*

@@ -1,14 +1,27 @@
 ---
-# INSTALL .: `pre-commit install --overwrite --install-hooks`
+# INSTALL .: `pre-commit install`
 # UPDATE ..: `pre-commit autoupdate`
-exclude: '^(CHANGELOG\.md)$'
+exclude: |
+  (?x)^(
+    CHANGELOG\..*|
+    \.copier-answers\..*|
+    \.copier/answers\..*|
+    .*/vendor/.*|
+    .+\.min\.(css|js)|
+    .+\.svg
+  )$
 default_language_version:
-  python: python3.9
+  python: python3.12
+default_install_hook_types:
+  - commit-msg
+  - pre-commit
 repos:
+  # General
+  # https://github.com/pre-commit/pre-commit-hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-      # Generall Stuff
+      # Whitespace
       - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: mixed-line-ending
@@ -16,37 +29,68 @@ repos:
           - "--fix=lf"
       # VCS
       - id: check-merge-conflict
+        args:
+          - "--assume-in-merge"
+      # Binaries
+      - id: check-shebang-scripts-are-executable
       # Config / Data Files (syntax check only)
+      - id: check-json
       - id: check-yaml
       - id: check-toml
+      - id: check-xml
       # Python
       - id: debug-statements
-      - id: requirements-txt-fixer
-  # Prettier (HTML, JS, CSS, Markdown, YAML…)
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v4.0.0-alpha.8
+      # Sensible Data
+      - id: detect-private-key
+  # Markdown
+  # https://github.com/executablebooks/mdformat
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.22
     hooks:
-      - id: prettier
-  # Python: check syntax
-  - repo: https://github.com/pycqa/flake8
-    rev: 7.1.1
+      - id: mdformat
+        additional_dependencies:
+          - mdformat-config
+          - mdformat-frontmatter
+          - mdformat-mkdocs
+          - mdformat-tables
+        # skip linting Hugo content b/c of this bug:
+        # https://github.com/executablebooks/mdformat/issues/402
+        exclude: ^site/content/.*
+  # Conventional Commits <https://www.conventionalcommits.org/>
+  # https://github.com/compilerla/conventional-pre-commit
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v4.0.0
     hooks:
-      - id: flake8
+      - id: conventional-pre-commit
+        stages:
+          - commit-msg
         args:
-          - "--select=F"
-  # Python: reorder imports
-  - repo: https://github.com/asottile/reorder-python-imports
-    rev: v3.14.0
+          - change
+          - chore
+          - feat
+          - fix
+  # Python: lint and format code
+  # https://github.com/astral-sh/ruff-pre-commit
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.4
     hooks:
-      - id: reorder-python-imports
+      - id: ruff
         args:
-          - "--application-directories=.:src:tests"
-          - "--py37-plus"
-  # Python: lint with black
-  - repo: https://github.com/psf/black
-    rev: 24.10.0
+          - "--fix"
+          - "--exit-non-zero-on-fix"
+          - "--target-version=py312"
+          # https://docs.astral.sh/ruff/rules/
+          - "--select=F,E4,E7,E9,I,UP,B,N"
+          - "--config"
+          - "lint.isort.force-single-line=true"
+          - "--config"
+          - "format.docstring-code-format=true"
+      - id: ruff-format
+        args:
+          - "--target-version=py312"
+  # Python: check project (i.e. `pyproject.toml`)
+  # https://github.com/abravalheri/validate-pyproject
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.23
     hooks:
-      - id: black
-        args:
-          - "--line-length=88"
-          - "--target-version=py37"
+      - id: validate-pyproject

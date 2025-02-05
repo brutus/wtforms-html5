@@ -1,6 +1,0 @@
----
-schedule: "every week"
-label_prs: dependencies
-search: no
-requirements:
-  - requirements/constraints.txt

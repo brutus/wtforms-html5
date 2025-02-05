@@ -1,29 +1,103 @@
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/wtforms_html5"]
+
+[project]
+name = "wtforms-html5"
+description = "Generates render keywords for widgets of WTForms HTML5 fields."
+readme = "README.md"
+license = "GPL-3.0-or-later"
+authors = [
+  {name = "Brutus", email = "brutus.dmc@googlemail.com"},
 ]
-build-backend = "setuptools.build_meta"
+maintainers = [
+  {name = "Brutus", email = "brutus.dmc@googlemail.com"},
+]
+classifiers = [
+	"License :: OSI Approved :: GNU General Public License (GPL)",
+	"Operating System :: OS Independent",
+	"Programming Language :: Python",
+	"Development Status :: 4 - Beta",
+	"Environment :: Web Environment",
+	"Intended Audience :: Developers",
+	"Topic :: Internet :: WWW/HTTP",
+]
+requires-python = ">=3.9"
+version = "0.6.1"
+dependencies = [
+	"wtforms",
+]
 
-[tool.flakehell]
-max_line_length = 88
-show_source = true
-exclude = [".git", ".venv", ".mypy_cache", ".pytest_cache", ".nox"]
-extended_default_ignore = [] # https://github.com/flakehell/flakehell/issues/10
+[project.urls]
+Source = "https://github.com/brutus/wtforms-html5"
+Documentation = "https://github.com/brutus/wtforms-html5/README.md"
+Issues = "https://github.com/brutus/wtforms-html5/issues/"
 
-[tool.flakehell.plugins]
-pyflakes = ["+*"]
-pycodestyle = ["+*", "-E203"]
+# LINTING
+
+[tool.hatch.envs.lint]
+detached = true
+dependencies = [
+	"pre-commit",
+	"pyupgrade",
+	"ruff",
+]
+
+[tool.hatch.envs.lint.scripts]
+pc = "pre-commit run --all-files {args}"
+check = [
+	"ruff check --no-fix {args:.}",
+	"ruff check --fix-only --diff {args:.}",
+	"ruff format --check --diff {args:.}",
+]
+fix = [
+	"ruff check --fix {args:.}",
+	"ruff format {args:.}",
+]
+upgrade = "git ls-files -- '*.py' | xargs -r pyupgrade --py39-plus"
+
+[tool.ruff]
+src = ['.', 'src', 'tests']
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*" = ["PLR2004", "S101", "TID252"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["wtforms_html5"]
+force-single-line = true
+
+# TESTING
+
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.13", "3.12", "3.11", "3.10", "3.9"]
+
+[tool.hatch.envs.hatch-test]
+extra-dependencies = [
+	"beautifulsoup4",
+	"werkzeug",
+	"xdoctest[colors]",
+]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers --import-mode=importlib"
+testpaths = [
+	"tests",
+]
 
 [tool.coverage.run]
 branch = true
-disable_warnings = [
-	"module-not-measured",
-	"no-data-collected",
+parallel = true
+source_pkgs = ["wtforms_html5"]
+omit = [
+	"src/wtforms_html5/__about__.py",
 ]
-source_pkgs = [
-	"wtforms_html5",
-]
+
+[tool.coverage.paths]
+wtforms_html5 = ["src/wtforms_html5"]
+tests = ["tests", "*/wtforms_html5/tests"]
 
 [tool.coverage.report]
 fail_under = 80
@@ -31,30 +105,55 @@ precision = 2
 skip_covered = true
 skip_empty = true
 show_missing = true
+exclude_lines = [
+	"no cov",
+	"if __name__ == .__main__.:",
+	"if TYPE_CHECKING:",
+]
+
+# PROJECT MANAGEMENT
+
+[tool.hatch.envs.project]
+detached = true
+dependencies = [
+	"bumpver",
+	"towncrier",
+]
+
+[tool.bumpver]
+current_version = "0.6.1"
+version_pattern = "MAJOR.MINOR.PATCH[PYTAGNUM]"
+commit_message = "chore: bump version `{old_version}` -> `{new_version}`"
+tag_message = "v{new_version}"
+commit = true
+tag = true
+push = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = [
+	'^version = "{version}"',
+	'^current_version = "{version}"',
+]
+"src/wtforms_html5/__init__.py" = [
+	'__version__ = "{version}"',
+]
+"tests/conftest.py" = [
+	'EXP_VERSION = "{version}"',
+]
+"README.md" = [
+	'**VERSION**: `{version}`',
+]
 
 [tool.towncrier]
 directory = "changes"
 filename = "CHANGELOG.md"
-template = "changes/template.j2"
-start_string = "<!-- TOWNCRIER -->\n"
-underlines = ["", ""]
-title_format = "## {version} ({project_date})\n\n"
+title_format = "## {version} ({project_date})"
 issue_format = "[#{issue}](https://github.com/brutus/wtforms-html5/issues/{issue})"
 wrap = true
 
 [[tool.towncrier.type]]
-directory = "feature"
-name = "Features"
-showcontent = true
-
-[[tool.towncrier.type]]
-directory = "change"
-name = "Changes"
-showcontent = true
-
-[[tool.towncrier.type]]
-directory = "removal"
-name = "Deprecations and Removals"
+directory = "rm"
+name = "Removals"
 showcontent = true
 
 [[tool.towncrier.type]]
@@ -63,6 +162,11 @@ name = "Bugfixes"
 showcontent = true
 
 [[tool.towncrier.type]]
-directory = "misc"
-name = "Misc"
-showcontent = false
+directory = "feat"
+name = "Features"
+showcontent = true
+
+[[tool.towncrier.type]]
+directory = "change"
+name = "Changes"
+showcontent = true

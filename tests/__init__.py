@@ -1,8 +1,4 @@
-# pylama:ignore=C0111
-import sys
-from functools import wraps
-from unittest import SkipTest
-
+import pytest
 from wtforms import Form
 from wtforms import StringField
 
@@ -35,8 +31,8 @@ def get_form(form_data=None, flags=None, use_meta=False, **kwargs):
     flags = flags or []
     meta_class = AutoAttrMeta if use_meta else object
 
-    class TestForm(Form):  # noqa
-        class Meta(meta_class):  # noqa
+    class TestForm(Form):
+        class Meta(meta_class):
             pass
 
         test_field = StringField("Testfield", **kwargs)
@@ -51,7 +47,7 @@ def get_form(form_data=None, flags=None, use_meta=False, **kwargs):
     # process data
     if form_data:
         if MultiDict is None:
-            raise SkipTest("This test requires `MultiDict` from `Werkzeug`.")
+            pytest.skip("This test requires `MultiDict` from `Werkzeug`.")
         form.process(MultiDict(form_data))
 
     return form
@@ -63,25 +59,6 @@ def get_field(form, fieldname="test_field"):
 
     """
     if BeautifulSoup is None:
-        raise SkipTest("This test requires `BeautifulSoup`.")
+        pytest.skip("This test requires `BeautifulSoup`.")
     field = getattr(form, fieldname)
     return BeautifulSoup(field(), "html.parser").input
-
-
-def SkipIfNoSubtests(f):  # noqa
-    """
-    Decorator that checks that the subtest feature of unittest is available.
-
-    Raises:
-
-        SkipTest: on Python < 3.4
-
-    """
-
-    @wraps(f)
-    def wrapper(*args, **kwargs):
-        if sys.version_info < (3, 4):
-            raise SkipTest("This test requires subtest and needs `Python >= 3.4`.")
-        return f(*args, **kwargs)
-
-    return wrapper
