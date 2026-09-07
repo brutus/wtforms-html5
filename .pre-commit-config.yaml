@@ -19,7 +19,7 @@ repos:
   # General
   # https://github.com/pre-commit/pre-commit-hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       # Whitespace
       - id: trailing-whitespace
@@ -45,7 +45,7 @@ repos:
   # Markdown
   # https://github.com/executablebooks/mdformat
   - repo: https://github.com/executablebooks/mdformat
-    rev: 0.7.22
+    rev: 1.0.0
     hooks:
       - id: mdformat
         additional_dependencies:
@@ -59,7 +59,7 @@ repos:
   # Conventional Commits <https://www.conventionalcommits.org/>
   # https://github.com/compilerla/conventional-pre-commit
   - repo: https://github.com/compilerla/conventional-pre-commit
-    rev: v4.0.0
+    rev: v4.4.0
     hooks:
       - id: conventional-pre-commit
         stages:
@@ -72,7 +72,7 @@ repos:
   # Python: lint and format code
   # https://github.com/astral-sh/ruff-pre-commit
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.4
+    rev: v0.16.6
     hooks:
       - id: ruff
         args:
@@ -91,6 +91,6 @@ repos:
   # Python: check project (i.e. `pyproject.toml`)
   # https://github.com/abravalheri/validate-pyproject
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.23
+    rev: '0.26'
     hooks:
       - id: validate-pyproject
